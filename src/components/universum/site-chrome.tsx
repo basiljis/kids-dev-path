@@ -8,7 +8,9 @@ const NAV = [
   { to: "/vendor/add-product", label: "Для производителей" },
   { to: "/science", label: "Научная база" },
   { to: "/parent/dashboard", label: "Кабинет родителя" },
+  { to: "/analytics", label: "Аналитика" },
 ] as const;
+
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
