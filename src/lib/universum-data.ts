@@ -403,12 +403,81 @@ export const CHILDREN: Child[] = [
     ovz: "ZPR",
     spheres: { cognitive: 34, speech: 52, emotional: 61, social: 58, motor: 66 },
     deficits: [
-      { metric: "working_memory", metricLabel: "Рабочая память", sphere: "cognitive", score: 28, level: "critical_deficit" },
-      { metric: "sustained_attention", metricLabel: "Устойчивость внимания", sphere: "cognitive", score: 37, level: "below_average" },
-      { metric: "active_vocabulary", metricLabel: "Активный словарь", sphere: "speech", score: 52, level: "below_average" },
+      { metric: "working_memory", metricLabel: "Рабочая память", sphere: "cognitive", score: 34, level: "critical_deficit" },
+      { metric: "sustained_attention", metricLabel: "Устойчивость внимания", sphere: "cognitive", score: 40, level: "below_average" },
     ],
   },
 ];
+
+export type RegionalStat = {
+  region: string;
+  deficits: Record<SphereKey, number>;
+  totalChildren: number;
+};
+
+export const REGIONAL_STATS: RegionalStat[] = [
+  {
+    region: "Московская область",
+    totalChildren: 1240,
+    deficits: { cognitive: 32, speech: 45, emotional: 28, social: 38, motor: 22 },
+  },
+  {
+    region: "Ленинградская область",
+    totalChildren: 890,
+    deficits: { cognitive: 28, speech: 40, emotional: 35, social: 30, motor: 18 },
+  },
+];
+
+export function formatPrice(amount: number) {
+  return new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "RUB",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+export function formatAgeRange(minMonths: number, maxMonths: number) {
+  const minYears = Math.floor(minMonths / 12);
+  const maxYears = Math.floor(maxMonths / 12);
+  if (minYears === maxYears) return `${minYears} лет`;
+  return `${minYears}–${maxYears} лет`;
+}
+
+export function sphereProfile(product: Product): Record<SphereKey, number> {
+  const result: Record<SphereKey, number> = {
+    cognitive: 0,
+    speech: 0,
+    emotional: 0,
+    social: 0,
+    motor: 0,
+  };
+  product.metrics.forEach((m) => {
+    result[m.sphere] = Math.max(result[m.sphere], m.impact);
+  });
+  return result;
+}
+
+export function recommendedProductIds(child: Child): Set<string> {
+  const recommended = new Set<string>();
+  const childMetrics = child.deficits.map((d) => d.metric);
+
+  PRODUCTS.forEach((p) => {
+    const isAgeMatch = child.ageMonths >= p.ageMinMonths && child.ageMonths <= p.ageMaxMonths;
+    const isMetricMatch = p.metrics.some((m) => childMetrics.includes(m.metric) && m.impact > 60);
+
+    if (isAgeMatch && isMetricMatch) {
+      recommended.add(p.id);
+    }
+  });
+
+  return recommended;
+}
+
+export function generatePrescription(child: Child) {
+  const recommendedIds = recommendedProductIds(child);
+  return PRODUCTS.filter((p) => recommendedIds.has(p.id));
+}
+
 
 export const DEFICIT_LEVEL_LABEL: Record<Deficit["level"], string> = {
   critical_deficit: "Критический дефицит",
