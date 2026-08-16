@@ -18,8 +18,8 @@ export const Route = createFileRoute("/parent/dashboard")({
 
 function ParentDashboard() {
   const child = CHILDREN[0]!;
-  const prescriptionGroups = generatePrescription(child);
-  const prescriptionProducts = Array.from(new Set(prescriptionGroups.flatMap(g => g.matches.map(m => m.product))));
+  const personalRecs = generatePrescription(child);
+  const prescriptionProducts = personalRecs.map(rec => rec.product);
 
 
   return (
@@ -85,7 +85,7 @@ function ParentDashboard() {
                       <p className="text-xs text-muted-foreground">{product.vendor}</p>
                       <h3 className="font-bold">{product.name}</h3>
                       <div className="mt-2 flex flex-wrap gap-1">
-                        {product.metrics.filter(m => child.deficits.some(d => d.metric === m.metric)).map(m => (
+                        {product.metrics.filter((m: any) => child.deficits.some(d => d.metric === m.metric)).map((m: any) => (
                           <Badge key={m.metric} variant="secondary" className="text-[10px]">
                             {m.metricLabel}
                           </Badge>
