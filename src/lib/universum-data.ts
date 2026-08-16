@@ -373,6 +373,19 @@ export type Deficit = {
   level: "critical_deficit" | "below_average" | "norm";
 };
 
+export type RecommendationReason = {
+  metric: string;
+  metricLabel: string;
+  impact: number;
+  deficitScore: number;
+};
+
+export type ProductRecommendation = {
+  product: Product;
+  reasons: RecommendationReason[];
+  score: number; // Higher means better match
+};
+
 export type Child = {
   id: string;
   name: string;
