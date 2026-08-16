@@ -8,7 +8,8 @@ import {
   type ProductRecommendation
 } from "@/lib/universum-data";
 import { Badge } from "@/components/ui/badge";
-import { Target, Sparkles, BrainCircuit } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { BrainCircuit, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/marketplace/recommendations")({
   head: () => ({
