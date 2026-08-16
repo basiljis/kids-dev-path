@@ -373,6 +373,19 @@ export type Deficit = {
   level: "critical_deficit" | "below_average" | "norm";
 };
 
+export type RecommendationReason = {
+  metric: string;
+  metricLabel: string;
+  impact: number;
+  deficitScore: number;
+};
+
+export type ProductRecommendation = {
+  product: Product;
+  reasons: RecommendationReason[];
+  score: number; // Higher means better match
+};
+
 export type Child = {
   id: string;
   name: string;
@@ -464,34 +477,54 @@ export function sphereProfile(product: Product): Record<SphereKey, number> {
 }
 
 /** Digital Prescription engine: match products to a child's deficits. */
-export function generatePrescription(child: Child) {
-  const weight = { critical_deficit: 3, below_average: 2, norm: 1 };
-  return child.deficits
-    .filter((d) => d.level !== "norm")
-    .map((deficit) => {
-      const matches = PRODUCTS.filter(
-        (p) =>
-          p.ageMinMonths <= child.ageMonths &&
-          p.ageMaxMonths >= child.ageMonths &&
-          p.ovz.includes(child.ovz) &&
-          p.metrics.some((m2) => m2.metric === deficit.metric && m2.impact > 60),
-      )
-        .map((p) => {
-          const impact = p.metrics.find((m2) => m2.metric === deficit.metric)!.impact;
-          const forecast = Math.min(95, Math.round(deficit.score + impact * 0.42));
-          return { product: p, impact, forecast };
-        })
-        .sort((a, b) => b.impact - a.impact);
-      return { deficit, matches, priority: weight[deficit.level] };
-    })
-    .sort((a, b) => b.priority - a.priority || a.deficit.score - b.deficit.score);
-}
+export const generatePrescription = (child: Child): ProductRecommendation[] => {
+  const recommendations: ProductRecommendation[] = [];
+
+  for (const product of PRODUCTS) {
+    // Check age appropriateness
+    if (child.ageMonths < product.ageMinMonths || child.ageMonths > product.ageMaxMonths) {
+      continue;
+    }
+
+    const reasons: RecommendationReason[] = [];
+    let matchScore = 0;
+
+    for (const deficit of child.deficits) {
+      // Find a metric in the product that addresses this specific deficit
+      const addressingMetric = product.metrics.find(m => m.metric === deficit.metric);
+      
+      if (addressingMetric && addressingMetric.impact > 40) {
+        reasons.push({
+          metric: deficit.metric,
+          metricLabel: deficit.metricLabel,
+          impact: addressingMetric.impact,
+          deficitScore: deficit.score
+        });
+
+        // Scoring logic: impact * severity of deficit
+        // Higher impact on a lower deficit score = higher priority
+        const severity = (100 - deficit.score) / 100;
+        matchScore += addressingMetric.impact * severity;
+      }
+    }
+
+    if (reasons.length > 0) {
+      recommendations.push({
+        product,
+        reasons,
+        score: matchScore
+      });
+    }
+  }
+
+  return recommendations.sort((a, b) => b.score - a.score);
+};
 
 export function recommendedProductIds(child: Child): Set<string> {
   const ids = new Set<string>();
   const prescription = generatePrescription(child);
-  for (const group of prescription) {
-    for (const match of group.matches) ids.add(match.product.id);
+  for (const match of prescription) {
+    ids.add(match.product.id);
   }
   return ids;
 }

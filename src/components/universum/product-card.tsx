@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { BadgeCheck, Clock3, Sparkles } from "lucide-react";
+import { BadgeCheck, Clock3, Sparkles, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SphereBadge } from "./sphere-badge";
 import { SphereRadar } from "./sphere-radar";
 import {
@@ -11,14 +12,17 @@ import {
   formatPrice,
   sphereProfile,
   type Product,
+  type RecommendationReason,
 } from "@/lib/universum-data";
 
 export function ProductCard({
   product,
   recommended = false,
+  reasons = [],
 }: {
   product: Product;
   recommended?: boolean;
+  reasons?: RecommendationReason[];
 }) {
   const profile = sphereProfile(product);
   const top = [...product.metrics].sort((a, b) => b.impact - a.impact).slice(0, 2);
@@ -31,9 +35,23 @@ export function ProductCard({
         </div>
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           {recommended && (
-            <Badge className="gap-1">
-              <Sparkles className="size-3" /> Рекомендовано ППк
-            </Badge>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge className="gap-1 cursor-help">
+                    <Target className="size-3" /> Для дефицитов
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-[200px] p-2">
+                  <p className="text-xs font-semibold mb-1">Рекомендовано по дефицитам:</p>
+                  <ul className="text-[10px] space-y-1">
+                    {reasons.map(r => (
+                      <li key={r.metric}>• {r.metricLabel} (Влияние: {r.impact}%)</li>
+                    ))}
+                  </ul>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
           {product.validated ? (
             <Badge variant="secondary" className="gap-1 text-success">
