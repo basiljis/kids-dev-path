@@ -14,6 +14,7 @@ import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as ScienceRouteImport } from './routes/science'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
 import { Route as MarketplaceIdRouteImport } from './routes/marketplace.$id'
+import { Route as MarketplaceRecommendationsRouteImport } from './routes/marketplace.recommendations'
 import { Route as ParentDashboardRouteImport } from './routes/parent.dashboard'
 import { Route as VendorAddProductRouteImport } from './routes/vendor.add-product'
 
@@ -42,6 +43,12 @@ const MarketplaceIdRoute = MarketplaceIdRouteImport.update({
   path: '/marketplace/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketplaceRecommendationsRoute =
+  MarketplaceRecommendationsRouteImport.update({
+    id: '/marketplace/recommendations',
+    path: '/marketplace/recommendations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ParentDashboardRoute = ParentDashboardRouteImport.update({
   id: '/parent/dashboard',
   path: '/parent/dashboard',
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
   '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
   '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace': typeof MarketplaceIndexRoute
@@ -77,6 +86,7 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
   '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/science'
     | '/marketplace/$id'
+    | '/marketplace/recommendations'
     | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/science'
     | '/marketplace/$id'
+    | '/marketplace/recommendations'
     | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace'
@@ -106,6 +118,7 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/science'
     | '/marketplace/$id'
+    | '/marketplace/recommendations'
     | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace/'
@@ -116,6 +129,7 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   ScienceRoute: typeof ScienceRoute
   MarketplaceIdRoute: typeof MarketplaceIdRoute
+  MarketplaceRecommendationsRoute: typeof MarketplaceRecommendationsRoute
   ParentDashboardRoute: typeof ParentDashboardRoute
   VendorAddProductRoute: typeof VendorAddProductRoute
   MarketplaceIndexRoute: typeof MarketplaceIndexRoute
@@ -158,6 +172,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/marketplace/recommendations': {
+      id: '/marketplace/recommendations'
+      path: '/marketplace/recommendations'
+      fullPath: '/marketplace/recommendations'
+      preLoaderRoute: typeof MarketplaceRecommendationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parent/dashboard': {
       id: '/parent/dashboard'
       path: '/parent/dashboard'
@@ -180,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   ScienceRoute: ScienceRoute,
   MarketplaceIdRoute: MarketplaceIdRoute,
+  MarketplaceRecommendationsRoute: MarketplaceRecommendationsRoute,
   ParentDashboardRoute: ParentDashboardRoute,
   VendorAddProductRoute: VendorAddProductRoute,
   MarketplaceIndexRoute: MarketplaceIndexRoute,
