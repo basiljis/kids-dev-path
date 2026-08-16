@@ -4,12 +4,14 @@ import { Menu, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV = [
-  { to: "/marketplace", label: "Каталог оборудования" },
+  { to: "/marketplace", label: "Каталог" },
+  { to: "/marketplace/recommendations", label: "Рекомендации" },
   { to: "/vendor/add-product", label: "Для производителей" },
   { to: "/science", label: "Научная база" },
   { to: "/parent/dashboard", label: "Кабинет родителя" },
   { to: "/analytics", label: "Аналитика" },
 ] as const;
+
 
 
 export function SiteHeader() {
