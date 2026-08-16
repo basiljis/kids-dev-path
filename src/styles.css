@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* UNIVERSUM design system: medical-pedagogical, friendly, trustworthy. */
+
 /*
  * Design system definition.
  *
@@ -59,18 +61,40 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-cognitive: var(--cognitive);
+  --color-speech: var(--speech);
+  --color-emotional: var(--emotional);
+  --color-social: var(--social);
+  --color-motor: var(--motor);
+  --color-critical: var(--critical);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.984 0.003 247.858);
+  --foreground: oklch(0.21 0.04 265);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.21 0.04 265);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --popover-foreground: oklch(0.21 0.04 265);
+  --primary: oklch(0.359 0.144 266.5);
+  --primary-foreground: oklch(0.99 0.003 247.858);
+  --primary-glow: oklch(0.55 0.17 262);
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  --gradient-soft: linear-gradient(160deg, oklch(0.97 0.02 262), oklch(0.99 0.006 247));
+  --shadow-elegant: 0 18px 40px -22px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-card: 0 1px 2px oklch(0.21 0.04 265 / 6%), 0 10px 24px -18px oklch(0.21 0.04 265 / 35%);
+  --cognitive: oklch(0.53 0.24 296);
+  --speech: oklch(0.7 0.19 45);
+  --emotional: oklch(0.65 0.23 355);
+  --social: oklch(0.7 0.16 162);
+  --motor: oklch(0.72 0.13 210);
+  --critical: oklch(0.63 0.23 27);
+  --warning: oklch(0.75 0.16 70);
+  --success: oklch(0.7 0.16 162);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
