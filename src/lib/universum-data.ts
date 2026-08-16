@@ -428,6 +428,12 @@ export const REGIONAL_STATS: RegionalStat[] = [
   },
 ];
 
+export const DEFICIT_LEVEL_LABEL: Record<Deficit["level"], string> = {
+  critical_deficit: "Критический дефицит",
+  below_average: "Ниже нормы",
+  norm: "Норма",
+};
+
 export function formatPrice(amount: number) {
   return new Intl.NumberFormat("ru-RU", {
     style: "currency",
@@ -457,44 +463,6 @@ export function sphereProfile(product: Product): Record<SphereKey, number> {
   return result;
 }
 
-export function recommendedProductIds(child: Child): Set<string> {
-  const recommended = new Set<string>();
-  const childMetrics = child.deficits.map((d) => d.metric);
-
-  PRODUCTS.forEach((p) => {
-    const isAgeMatch = child.ageMonths >= p.ageMinMonths && child.ageMonths <= p.ageMaxMonths;
-    const isMetricMatch = p.metrics.some((m) => childMetrics.includes(m.metric) && m.impact > 60);
-
-    if (isAgeMatch && isMetricMatch) {
-      recommended.add(p.id);
-    }
-  });
-
-  return recommended;
-}
-
-export function generatePrescription(child: Child) {
-  const recommendedIds = recommendedProductIds(child);
-  return PRODUCTS.filter((p) => recommendedIds.has(p.id));
-}
-
-
-export const DEFICIT_LEVEL_LABEL: Record<Deficit["level"], string> = {
-  critical_deficit: "Критический дефицит",
-  below_average: "Ниже нормы",
-  norm: "Норма",
-};
-
-export function sphereProfile(product: Product): Record<SphereKey, number> {
-  const profile: Record<SphereKey, number> = {
-    cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0,
-  };
-  for (const metric of product.metrics) {
-    profile[metric.sphere] = Math.max(profile[metric.sphere], metric.impact);
-  }
-  return profile;
-}
-
 /** Digital Prescription engine: match products to a child's deficits. */
 export function generatePrescription(child: Child) {
   const weight = { critical_deficit: 3, below_average: 2, norm: 1 };
@@ -521,7 +489,8 @@ export function generatePrescription(child: Child) {
 
 export function recommendedProductIds(child: Child): Set<string> {
   const ids = new Set<string>();
-  for (const group of generatePrescription(child)) {
+  const prescription = generatePrescription(child);
+  for (const group of prescription) {
     for (const match of group.matches) ids.add(match.product.id);
   }
   return ids;
@@ -556,11 +525,3 @@ export const ACTIVE_DEVICES = [
     status: "Старт",
   },
 ];
-
-export function formatPrice(value: number) {
-  return new Intl.NumberFormat("ru-RU").format(value) + " ₽";
-}
-
-export function formatAgeRange(minMonths: number, maxMonths: number) {
-  return `${Math.round(minMonths / 12)}-${Math.round(maxMonths / 12)} лет`;
-}

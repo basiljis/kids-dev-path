@@ -10,13 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as ScienceRouteImport } from './routes/science'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
 import { Route as MarketplaceIdRouteImport } from './routes/marketplace.$id'
+import { Route as ParentDashboardRouteImport } from './routes/parent.dashboard'
+import { Route as VendorAddProductRouteImport } from './routes/vendor.add-product'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScienceRoute = ScienceRouteImport.update({
@@ -34,38 +42,82 @@ const MarketplaceIdRoute = MarketplaceIdRouteImport.update({
   path: '/marketplace/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParentDashboardRoute = ParentDashboardRouteImport.update({
+  id: '/parent/dashboard',
+  path: '/parent/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorAddProductRoute = VendorAddProductRouteImport.update({
+  id: '/vendor/add-product',
+  path: '/vendor/add-product',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/parent/dashboard': typeof ParentDashboardRoute
+  '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/parent/dashboard': typeof ParentDashboardRoute
+  '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace': typeof MarketplaceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/science': typeof ScienceRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
+  '/parent/dashboard': typeof ParentDashboardRoute
+  '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/science' | '/marketplace/$id' | '/marketplace/'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/science'
+    | '/marketplace/$id'
+    | '/parent/dashboard'
+    | '/vendor/add-product'
+    | '/marketplace/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/science' | '/marketplace/$id' | '/marketplace'
-  id: '__root__' | '/' | '/science' | '/marketplace/$id' | '/marketplace/'
+  to:
+    | '/'
+    | '/analytics'
+    | '/science'
+    | '/marketplace/$id'
+    | '/parent/dashboard'
+    | '/vendor/add-product'
+    | '/marketplace'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/science'
+    | '/marketplace/$id'
+    | '/parent/dashboard'
+    | '/vendor/add-product'
+    | '/marketplace/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   ScienceRoute: typeof ScienceRoute
   MarketplaceIdRoute: typeof MarketplaceIdRoute
+  ParentDashboardRoute: typeof ParentDashboardRoute
+  VendorAddProductRoute: typeof VendorAddProductRoute
   MarketplaceIndexRoute: typeof MarketplaceIndexRoute
 }
 
@@ -76,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/science': {
@@ -99,13 +158,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parent/dashboard': {
+      id: '/parent/dashboard'
+      path: '/parent/dashboard'
+      fullPath: '/parent/dashboard'
+      preLoaderRoute: typeof ParentDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/add-product': {
+      id: '/vendor/add-product'
+      path: '/vendor/add-product'
+      fullPath: '/vendor/add-product'
+      preLoaderRoute: typeof VendorAddProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   ScienceRoute: ScienceRoute,
   MarketplaceIdRoute: MarketplaceIdRoute,
+  ParentDashboardRoute: ParentDashboardRoute,
+  VendorAddProductRoute: VendorAddProductRoute,
   MarketplaceIndexRoute: MarketplaceIndexRoute,
 }
 export const routeTree = rootRouteImport

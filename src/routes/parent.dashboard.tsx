@@ -18,7 +18,9 @@ export const Route = createFileRoute("/parent/dashboard")({
 
 function ParentDashboard() {
   const child = CHILDREN[0]!;
-  const prescription = generatePrescription(child);
+  const prescriptionGroups = generatePrescription(child);
+  const prescriptionProducts = Array.from(new Set(prescriptionGroups.flatMap(g => g.matches.map(m => m.product))));
+
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
@@ -76,7 +78,7 @@ function ParentDashboard() {
               <BadgeCheck className="size-5 text-primary" /> Цифровой рецепт
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
-              {prescription.map((product) => (
+              {prescriptionProducts.map((product) => (
                 <Card key={product.id} className="overflow-hidden">
                   <div className="flex p-4">
                     <div className="flex-1">
