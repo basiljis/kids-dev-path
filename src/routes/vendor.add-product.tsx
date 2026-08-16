@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Building2, Plus, Science } from "lucide-react";
+import { Building2, Plus, FlaskConical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
