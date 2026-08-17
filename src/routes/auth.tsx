@@ -23,6 +23,9 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [role, setRole] = useState<"parent" | "vendor" | "org">("parent");
+
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
