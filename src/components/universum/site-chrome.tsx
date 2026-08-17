@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Menu, ShieldCheck, X, User, LogOut } from "lucide-react";
+import { Menu, ShieldCheck, X, User, LogOut, Info, Code, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
