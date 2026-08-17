@@ -36,7 +36,14 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              full_name: fullName,
+              role: role,
+            }
+          }
         });
+
         if (error) throw error;
         toast.success("Регистрация успешна! Проверьте почту для подтверждения.");
       } else {
