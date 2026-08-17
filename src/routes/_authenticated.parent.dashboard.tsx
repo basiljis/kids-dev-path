@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { SphereRadar } from "@/components/universum/sphere-radar";
 import { CHILDREN, generatePrescription, SPHERES } from "@/lib/universum-data";
 
-export const Route = createFileRoute("/parent/dashboard")({
+export const Route = createFileRoute("/_authenticated/parent/dashboard")({
   head: () => ({
     meta: [
       { title: "Личный кабинет родителя — UNIVERSUM" },

@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { Menu, ShieldCheck, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useRouter } from "@tanstack/react-router";
+import { Menu, ShieldCheck, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
@@ -16,6 +18,26 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast.success("Выход выполнен");
+    router.history.push("/");
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
@@ -41,12 +63,27 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/parent/dashboard">Войти</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link to="/marketplace">Регистрация</Link>
-          </Button>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" className="gap-2" asChild>
+                <Link to="/parent/dashboard">
+                  <User className="size-4" /> Кабинет
+                </Link>
+              </Button>
+              <Button variant="outline" size="sm" className="gap-2 text-destructive" onClick={handleLogout}>
+                <LogOut className="size-4" /> Выход
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/auth">Войти</Link>
+              </Button>
+              <Button size="sm" asChild>
+                <Link to="/auth">Регистрация</Link>
+              </Button>
+            </>
+          )}
         </div>
 
         <Button
