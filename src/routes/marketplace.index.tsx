@@ -6,6 +6,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Slider } from "@/components/ui/slider";
 import { ProductCard } from "@/components/universum/product-card";
 import {
@@ -47,6 +49,7 @@ function toggle<T>(list: T[], value: T) {
 function MarketplacePage() {
   const child = CHILDREN[0]!;
   const recommended = useMemo(() => recommendedProductIds(child), [child]);
+  const isMobile = useIsMobile();
 
   const [spheres, setSpheres] = useState<SphereKey[]>([]);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
@@ -184,19 +187,37 @@ function MarketplacePage() {
             демо-профилем ребёнка.
           </p>
         </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="lg:hidden">
-              <SlidersHorizontal className="size-4" /> Фильтры
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
-            <SheetHeader>
-              <SheetTitle>Фильтры</SheetTitle>
-            </SheetHeader>
-            <div className="pt-4">{filters}</div>
-          </SheetContent>
-        </Sheet>
+        {isMobile ? (
+          <Drawer>
+            <DrawerTrigger asChild>
+              <Button variant="outline" size="sm">
+                <SlidersHorizontal className="size-4" /> Фильтры
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent className="max-h-[85vh]">
+              <DrawerHeader>
+                <DrawerTitle>Фильтры</DrawerTitle>
+              </DrawerHeader>
+              <div className="overflow-y-auto px-4 pb-10">
+                {filters}
+              </div>
+            </DrawerContent>
+          </Drawer>
+        ) : (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="lg:hidden">
+                <SlidersHorizontal className="size-4" /> Фильтры
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
+              <SheetHeader>
+                <SheetTitle>Фильтры</SheetTitle>
+              </SheetHeader>
+              <div className="pt-4">{filters}</div>
+            </SheetContent>
+          </Sheet>
+        )}
       </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[260px_1fr]">
