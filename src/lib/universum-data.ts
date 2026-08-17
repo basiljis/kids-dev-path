@@ -119,9 +119,9 @@ export const PRODUCTS: Product[] = [
         "Kasari et al. (2010) — совместные игровые задачи"),
     ],
     papers: [
-      { title: "Motor skill intervention in children with developmental coordination disorder", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
-      { title: "Kinect-based rehabilitation games for children with motor impairments", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
-      { title: "Bilateral motor coordination in children with autism spectrum disorder", doi: "10.1080/17518423.2015.1065538", note: "n=22" },
+      { title: "Вмешательство в моторные навыки у детей с расстройством координации развития", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
+      { title: "Реабилитационные игры на базе Kinect для детей с нарушениями моторики", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
+      { title: "Билатеральная моторная координация у детей с расстройствами аутистического спектра", doi: "10.1080/17518423.2015.1065538", note: "n=22" },
     ],
     integrations: ["API v2.1", "Webhook", "АИС ППк"],
     userReviews: [
@@ -157,8 +157,8 @@ export const PRODUCTS: Product[] = [
       m("emotion_recognition", "Распознавание эмоций", "emotional", 40, "Пилот UNIVERSUM, n=31"),
     ],
     papers: [
-      { title: "Neurofeedback in ADHD: a comprehensive meta-analysis of clinical efficacy", doi: "10.1177/1087054712460087", note: "мета-анализ" },
-      { title: "Is neurofeedback an efficacious treatment for ADHD? A randomised controlled clinical trial", doi: "10.1007/s00787-009-0012-1", note: "n=102, p<0.001" },
+      { title: "Нейрофидбек при СДВГ: комплексный мета-анализ клинической эффективности", doi: "10.1177/1087054712460087", note: "мета-анализ" },
+      { title: "Является ли нейрофидбек эффективным методом лечения СДВГ? Рандомизированное контролируемое клиническое исследование", doi: "10.1007/s00787-009-0012-1", note: "n=102, p<0.001" },
     ],
     integrations: ["API v2.1", "Real-time sync"],
   },
@@ -188,8 +188,8 @@ export const PRODUCTS: Product[] = [
       m("verbal_memory", "Слухоречевая память", "cognitive", 55, "Baddeley (2003)"),
     ],
     papers: [
-      { title: "Digital speech therapy outcomes for children with speech sound disorders", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
-      { title: "Automatic speech recognition in children's speech therapy", doi: "10.1016/j.csl.2016.09.004", note: "обзор технологий" },
+      { title: "Результаты цифровой логопедии для детей с нарушениями звукопроизношения", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
+      { title: "Автоматическое распознавание речи в детской логопедии", doi: "10.1016/j.csl.2016.09.004", note: "обзор технологий" },
     ],
     integrations: ["API v2.1", "SCORM 1.2", "АИС ППк"],
   },
@@ -218,8 +218,8 @@ export const PRODUCTS: Product[] = [
       m("communication_initiative", "Инициатива в общении", "social", 60, "Пилот UNIVERSUM, n=27"),
     ],
     papers: [
-      { title: "Virtually True: Exploring the potential of virtual reality for social skills training in ASD", doi: "10.1007/s10803-015-2497-3", note: "n=27" },
-      { title: "Virtual reality for improving social skills in children and adolescents with autism: A systematic review", doi: "10.1016/j.chb.2018.06.014", note: "систематический обзор" },
+      { title: "Виртуальная реальность: потенциал обучения социальным навыкам при РАС", doi: "10.1007/s10803-015-2497-3", note: "n=27" },
+      { title: "Виртуальная реальность для улучшения социальных навыков у детей и подростков с аутизмом: систематический обзор", doi: "10.1016/j.chb.2018.06.014", note: "систематический обзор" },
     ],
     integrations: ["API v2.1", "Webhook"],
   },
@@ -247,7 +247,7 @@ export const PRODUCTS: Product[] = [
       m("sensory_integration", "Сенсорная интеграция", "motor", 66, "Ayres (1979)"),
       m("self_regulation", "Саморегуляция", "emotional", 42, "Пилот UNIVERSUM, n=22"),
     ],
-    papers: [{ title: "Sensory integration therapy review", doi: "10.5014/ajot.2015.018051", note: "обзор" }],
+    papers: [{ title: "Обзор терапии сенсорной интеграции", doi: "10.5014/ajot.2015.018051", note: "обзор" }],
     integrations: ["API v2.1"],
   },
   {
@@ -274,7 +274,7 @@ export const PRODUCTS: Product[] = [
       m("phonemic_hearing", "Фонематический слух", "speech", 64, "Bishop (2017)"),
       m("oral_motor", "Оральная моторика", "motor", 58, "Пилот UNIVERSUM"),
     ],
-    papers: [{ title: "Articulation therapy technologies", doi: "10.1080/02699206.2018.1441436", note: "n=38" }],
+    papers: [{ title: "Технологии артикуляционной терапии", doi: "10.1080/02699206.2018.1441436", note: "n=38" }],
     integrations: ["API v2.1", "АИС ППк"],
   },
   {
@@ -301,7 +301,7 @@ export const PRODUCTS: Product[] = [
       m("inhibitory_control", "Тормозный контроль", "cognitive", 70, "Diamond (2013)"),
       m("sustained_attention", "Устойчивость внимания", "cognitive", 62, "Пилот UNIVERSUM, n=91"),
     ],
-    papers: [{ title: "Working memory training", doi: "10.1016/j.tics.2010.05.002", note: "обзор" }],
+    papers: [{ title: "Тренировка рабочей памяти", doi: "10.1016/j.tics.2010.05.002", note: "обзор" }],
     integrations: ["API v2.1", "SCORM 1.2"],
   },
   {
@@ -328,7 +328,7 @@ export const PRODUCTS: Product[] = [
       m("self_regulation", "Саморегуляция", "emotional", 58, "Пилот UNIVERSUM, n=19"),
       m("social_interaction", "Социальное взаимодействие", "social", 44, "Parsons (2015)"),
     ],
-    papers: [{ title: "Teaching emotion recognition", doi: "10.1017/S0954579406060305", note: "n=41" }],
+    papers: [{ title: "Обучение распознаванию эмоций", doi: "10.1017/S0954579406060305", note: "n=41" }],
     integrations: ["API v2.1"],
   },
   {
@@ -355,7 +355,7 @@ export const PRODUCTS: Product[] = [
       m("speech_breathing", "Речевое дыхание", "speech", 68, "Логопедические протоколы"),
       m("self_regulation", "Саморегуляция", "emotional", 62, "Пилот UNIVERSUM, n=44"),
     ],
-    papers: [{ title: "HRV biofeedback and anxiety", doi: "10.1007/s10484-013-9217-6", note: "n=44" }],
+    papers: [{ title: "Биофидбек ВСР и тревожность", doi: "10.1007/s10484-013-9217-6", note: "n=44" }],
     integrations: ["API v2.1", "АИС ППк", "Webhook"],
   },
   {
