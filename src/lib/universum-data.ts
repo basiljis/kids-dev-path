@@ -201,7 +201,10 @@ export const PRODUCTS: Product[] = [
       m("emotion_recognition", "Распознавание эмоций", "emotional", 68, "Golan & Baron-Cohen (2006)"),
       m("communication_initiative", "Инициатива в общении", "social", 60, "Пилот UNIVERSUM, n=27"),
     ],
-    papers: [{ title: "VR social skills training in ASD", doi: "10.1007/s10803-015-2497-3", note: "n=27" }],
+    papers: [
+      { title: "Virtually True: Exploring the potential of virtual reality for social skills training in ASD", doi: "10.1007/s10803-015-2497-3", note: "n=27" },
+      { title: "Virtual reality for improving social skills in children and adolescents with autism: A systematic review", doi: "10.1016/j.chb.2018.06.014", note: "систематический обзор" },
+    ],
     integrations: ["API v2.1", "Webhook"],
   },
   {
