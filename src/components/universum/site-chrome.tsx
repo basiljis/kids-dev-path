@@ -10,8 +10,8 @@ const NAV = [
   { to: "/marketplace/recommendations", label: "План развития (Пример)" },
   { to: "/vendor/add-product", label: "Для производителей" },
   { to: "/science", label: "Научная база" },
-  { to: "/parent/dashboard", label: "Кабинет родителя" },
-  { to: "/analytics", label: "Аналитика" },
+  { to: "/instructions", label: "Инструкции" },
+  { to: "/parent/dashboard", label: "Кабинет" },
 ] as const;
 
 
