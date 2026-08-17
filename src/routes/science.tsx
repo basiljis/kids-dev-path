@@ -128,7 +128,37 @@ function SciencePage() {
       </div>
 
 
+      <h2 className="mt-16 text-2xl font-bold tracking-tight">Внутренние исследования и протоколы</h2>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        {RESEARCH_BASE.map((group) => (
+          <Card key={group.category} className="p-6">
+            <h3 className="font-bold text-lg mb-4">{group.category}</h3>
+            <ul className="space-y-4">
+              {group.items.map((item) => (
+                <li key={item.title}>
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                      {item.title}
+                    </p>
+                    <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
+                      <span>{item.note}</span>
+                      <ExternalLink className="size-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Нормативно-правовое регулирование</h2>
+
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <div className="space-y-4">
           <h3 className="font-bold flex items-center gap-2"><ArrowRight className="size-4 text-primary" /> Законодательство РФ</h3>
