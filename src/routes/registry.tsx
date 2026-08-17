@@ -145,7 +145,7 @@ function RegistryPage() {
               rel="noopener noreferrer"
               className="mt-2 text-[10px] text-primary hover:underline flex items-center gap-1"
             >
-              Добавить ссылку на документ
+              Документация и регламенты
             </a>
           </Card>
         </div>
