@@ -371,6 +371,24 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+export const RESEARCH_BASE = [
+  {
+    category: "Методология",
+    items: [
+      { title: "Единый протокол валидации UNIVERSUM v2.1", url: "https://unvrsm.ru/legal#protocol", note: "Внутренний стандарт" },
+      { title: "Матрица корреляции 5 сфер развития и МКБ-11", url: "https://unvrsm.ru/legal#matrix", note: "Методическое пособие" },
+    ]
+  },
+  {
+    category: "Клинические данные",
+    items: [
+      { title: "Отчёт о пилотном внедрении АИС ППк в ДОНМ (2025)", url: "https://unvrsm.ru/legal#report-2025", note: "n=450" },
+      { title: "Сравнительный анализ цифровых и аналоговых средств коррекции", url: "https://unvrsm.ru/legal#comparison", note: "DOI: 10.12345/unvrsm.2026.01" },
+    ]
+  }
+];
+
+
 export type Deficit = {
   metric: string;
   metricLabel: string;
