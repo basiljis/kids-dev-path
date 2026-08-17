@@ -123,10 +123,18 @@ export function SiteFooter() {
     <footer className="mt-16 border-t border-border/70 bg-card">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-base font-extrabold tracking-tight">UNIVERSUM</p>
+          <div className="flex items-center gap-2">
+            <img 
+              src="/logo.png" 
+              alt="UNIVERSUM Logo" 
+              className="h-6 w-6 object-contain grayscale opacity-70" 
+            />
+            <p className="text-base font-extrabold tracking-tight">UNIVERSUM</p>
+          </div>
           <p className="mt-2 text-sm text-muted-foreground">
             Экосистема психолого-педагогического сопровождения детей 0-18 лет.
           </p>
+
           <div className="mt-6 space-y-1 text-xs text-muted-foreground">
             <p className="font-semibold text-foreground">Реквизиты:</p>
             <p>ИП Загладин В.С.</p>
