@@ -164,5 +164,22 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Improved contrast for small text in light mode */
+  .text-muted-foreground {
+    color: oklch(0.45 0.03 260);
   }
 }

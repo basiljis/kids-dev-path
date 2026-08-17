@@ -103,10 +103,16 @@ function ProductPage() {
                     <Info className="size-5 text-primary" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="max-w-[300px] p-4 text-sm leading-relaxed">
-                  <p className="font-bold mb-2">Анализ профиля воздействия</p>
-                  <p className="mb-2 text-muted-foreground">Форма радара отражает специализацию устройства. Отсутствие заполнения в определенных секторах (например, в Эмоциональном блоке) указывает на то, что данное решение не предназначено для коррекции дефицитов в этой области.</p>
-                  <p className="text-muted-foreground italic text-xs">Все данные подтверждены исследованиями в научной базе ниже.</p>
+                <TooltipContent className="max-w-[320px] p-0 overflow-hidden border-none shadow-xl">
+                  <div className="bg-[#1e2b5e] text-white p-5 space-y-3">
+                    <p className="font-bold text-base">Анализ профиля воздействия</p>
+                    <p className="text-sm leading-relaxed opacity-90">
+                      Форма радара отражает специализацию устройства. Отсутствие заполнения в определенных секторах (например, в Эмоциональном блоке) указывает на то, что данное решение не предназначено для коррекции дефицитов в этой области.
+                    </p>
+                    <p className="opacity-70 italic text-[11px] pt-1 border-t border-white/20">
+                      Все данные подтверждены исследованиями в научной базе ниже.
+                    </p>
+                  </div>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
