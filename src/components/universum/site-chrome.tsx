@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Menu, ShieldCheck, X, User, LogOut } from "lucide-react";
+import { Menu, ShieldCheck, X, User, LogOut, Info, Code, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
@@ -160,12 +169,100 @@ export function SiteFooter() {
           <p className="font-semibold">Интеграции</p>
           <ul className="mt-2 space-y-1.5 text-muted-foreground">
             <li>
-              <Link to="/science">Научная база</Link>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="hover:text-primary transition-colors cursor-pointer text-left">Научная база</button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <ShieldCheck className="size-5 text-primary" />
+                      Научная база UNIVERSUM
+                    </DialogTitle>
+                    <DialogDescription className="pt-4 space-y-4 text-foreground">
+                      <p>
+                        Платформа UNIVERSUM базируется на доказательных методах коррекционной педагогики и психологии. Мы интегрируем только те решения, которые прошли клиническую апробацию и имеют подтвержденную эффективность.
+                      </p>
+                      <div className="grid gap-3 mt-2">
+                        <div className="flex gap-3 items-start">
+                          <div className="p-1 bg-primary/10 rounded mt-0.5">
+                            <Info className="size-4 text-primary" />
+                          </div>
+                          <p className="text-sm">Маппинг оборудования на 5 сфер развития (когнитивная, речевая, эмоциональная, социальная, моторная).</p>
+                        </div>
+                        <div className="flex gap-3 items-start">
+                          <div className="p-1 bg-primary/10 rounded mt-0.5">
+                            <Info className="size-4 text-primary" />
+                          </div>
+                          <p className="text-sm">Использование международных стандартов оценки дефицитов и прогресса ребенка.</p>
+                        </div>
+                      </div>
+                      <Button asChild className="w-full mt-4">
+                        <Link to="/science">Перейти в полный раздел</Link>
+                      </Button>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </li>
-            <li>API v2.1 / SCORM 1.2</li>
-            <li>АИС ППк-Помощник</li>
+            <li>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="hover:text-primary transition-colors cursor-pointer text-left">API v2.1 / SCORM 1.2</button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Code className="size-5 text-primary" />
+                      Технические стандарты
+                    </DialogTitle>
+                    <DialogDescription className="pt-4 space-y-4 text-foreground">
+                      <p>
+                        UNIVERSUM поддерживает современные стандарты обмена данными для образовательных и медицинских систем:
+                      </p>
+                      <div className="space-y-3">
+                        <div className="p-3 bg-muted rounded-lg border border-border">
+                          <p className="font-bold text-sm">API v2.1 (RESTful)</p>
+                          <p className="text-xs text-muted-foreground mt-1">Позволяет вендорам передавать данные о занятиях напрямую в личную карту ребенка в реальном времени.</p>
+                        </div>
+                        <div className="p-3 bg-muted rounded-lg border border-border">
+                          <p className="font-bold text-sm">SCORM 1.2</p>
+                          <p className="text-xs text-muted-foreground mt-1">Обеспечивает совместимость с интерактивным контентом и тренажерами от различных производителей.</p>
+                        </div>
+                      </div>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </li>
+            <li>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="hover:text-primary transition-colors cursor-pointer text-left">АИС ППк-Помощник</button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <LayoutDashboard className="size-5 text-primary" />
+                      АИС ППк-Помощник
+                    </DialogTitle>
+                    <DialogDescription className="pt-4 space-y-4 text-foreground">
+                      <p>
+                        Глубокая интеграция с лидирующей системой психолого-педагогических консилиумов обеспечивает бесшовный путь от диагностики до реабилитации.
+                      </p>
+                      <ul className="list-disc list-inside space-y-2 text-sm">
+                        <li>Автоматическая передача данных о дефицитах из заключения ППк.</li>
+                        <li>Формирование «цифрового рецепта» на основе актуальных метрик.</li>
+                        <li>Обратная связь: результаты занятий с оборудования UNIVERSUM возвращаются в систему для мониторинга динамики.</li>
+                      </ul>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </li>
           </ul>
         </div>
+
         <div className="text-sm">
           <p className="font-semibold text-foreground">Документы</p>
           <ul className="mt-2 space-y-1.5 text-muted-foreground">
