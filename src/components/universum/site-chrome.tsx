@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Menu, ShieldCheck, X, User, LogOut, Info, Code, LayoutDashboard } from "lucide-react";
+import { Menu, ShieldCheck, X, User, LogOut, Info, Code, LayoutDashboard, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 
 
 const NAV = [
@@ -62,7 +63,15 @@ export function SiteHeader() {
 
 
         <nav className="hidden items-center gap-1 lg:flex">
+          <Link
+            to="/"
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground flex items-center gap-1.5"
+            activeProps={{ className: "text-foreground font-medium" }}
+          >
+            <Home className="size-4" /> Главная
+          </Link>
           {NAV.map((item) => (
+
             <Link
               key={item.to}
               to={item.to}
