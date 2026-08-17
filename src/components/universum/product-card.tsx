@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SphereBadge } from "./sphere-badge";
 import { SphereRadar } from "./sphere-radar";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import {
   CATEGORY_LABELS,
   formatAgeRange,
@@ -26,6 +28,7 @@ export function ProductCard({
 }) {
   const profile = sphereProfile(product);
   const top = [...product.metrics].sort((a, b) => b.impact - a.impact).slice(0, 2);
+  const isMobile = useIsMobile();
 
   return (
     <Card className="flex h-full flex-col overflow-hidden border-border/70 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-elegant)]">
@@ -98,11 +101,55 @@ export function ProductCard({
               аренда {formatPrice(product.priceRental)}/мес
             </p>
           </div>
-          <Button asChild size="sm">
-            <Link to="/marketplace/$id" params={{ id: product.id }}>
-              Подробнее
-            </Link>
-          </Button>
+          {isMobile ? (
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button size="sm">Подробнее</Button>
+              </DrawerTrigger>
+              <DrawerContent className="max-h-[90vh]">
+                <DrawerHeader className="text-left">
+                  <DrawerTitle>{product.name}</DrawerTitle>
+                </DrawerHeader>
+                <div className="overflow-y-auto px-4 pb-8">
+                   <div className="aspect-video bg-[image:var(--gradient-soft)] rounded-xl flex items-center justify-center mb-6">
+                     <SphereRadar values={profile} height={200} />
+                   </div>
+                   <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                   
+                   <div className="space-y-4">
+                     <div>
+                       <h4 className="text-sm font-bold mb-2">Ключевые показатели</h4>
+                       <div className="grid grid-cols-2 gap-2">
+                         {product.metrics.map(m => (
+                           <div key={m.metric} className="p-2 border rounded-lg">
+                             <p className="text-[10px] text-muted-foreground uppercase">{m.metricLabel}</p>
+                             <p className="text-sm font-bold">+{m.impact}%</p>
+                           </div>
+                         ))}
+                       </div>
+                     </div>
+
+                     <div className="pt-4 flex flex-col gap-2">
+                        <Button className="w-full" asChild>
+                          <Link to="/marketplace/$id" params={{ id: product.id }}>
+                            Открыть полную страницу
+                          </Link>
+                        </Button>
+                        <Button variant="outline" className="w-full">
+                          Добавить в рецепт
+                        </Button>
+                     </div>
+                   </div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          ) : (
+            <Button asChild size="sm">
+              <Link to="/marketplace/$id" params={{ id: product.id }}>
+                Подробнее
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </Card>
