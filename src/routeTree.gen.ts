@@ -15,6 +15,7 @@ import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as RegistryRouteImport } from './routes/registry'
 import { Route as ScienceRouteImport } from './routes/science'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
@@ -50,6 +51,11 @@ const InstructionsRoute = InstructionsRouteImport.update({
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistryRoute = RegistryRouteImport.update({
+  id: '/registry',
+  path: '/registry',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScienceRoute = ScienceRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRouteWithChildren
   '/instructions': typeof InstructionsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/registry': typeof RegistryRoute
   '/science': typeof ScienceRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRouteWithChildren
   '/instructions': typeof InstructionsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/registry': typeof RegistryRoute
   '/science': typeof ScienceRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRouteWithChildren
   '/instructions': typeof InstructionsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/registry': typeof RegistryRoute
   '/science': typeof ScienceRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/instructions'
     | '/privacy-policy'
+    | '/registry'
     | '/science'
     | '/auth/callback'
     | '/marketplace/$id'
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/instructions'
     | '/privacy-policy'
+    | '/registry'
     | '/science'
     | '/auth/callback'
     | '/marketplace/$id'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/instructions'
     | '/privacy-policy'
+    | '/registry'
     | '/science'
     | '/auth/callback'
     | '/marketplace/$id'
@@ -187,6 +199,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   InstructionsRoute: typeof InstructionsRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  RegistryRoute: typeof RegistryRoute
   ScienceRoute: typeof ScienceRoute
   MarketplaceIdRoute: typeof MarketplaceIdRoute
   MarketplaceRecommendationsRoute: typeof MarketplaceRecommendationsRoute
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registry': {
+      id: '/registry'
+      path: '/registry'
+      fullPath: '/registry'
+      preLoaderRoute: typeof RegistryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/science': {
@@ -319,6 +339,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   InstructionsRoute: InstructionsRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  RegistryRoute: RegistryRoute,
   ScienceRoute: ScienceRoute,
   MarketplaceIdRoute: MarketplaceIdRoute,
   MarketplaceRecommendationsRoute: MarketplaceRecommendationsRoute,
