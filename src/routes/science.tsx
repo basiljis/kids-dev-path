@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { PRODUCTS, SPHERES, SPHERE_ORDER } from "@/lib/universum-data";
 
 export const Route = createFileRoute("/science")({
@@ -70,6 +72,35 @@ function SciencePage() {
         ))}
       </ul>
 
+      <h2 className="mt-10 text-xl font-bold tracking-tight">Нормативно-правовая база</h2>
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <Card className="p-4">
+          <h3 className="font-bold">Федеральные законы</h3>
+          <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+            <li>ФЗ-152 «О персональных данных» (УЗ-1)</li>
+            <li>ФЗ-273 «Об образовании в РФ»</li>
+            <li>ФЗ-124 «Об основных гарантиях прав ребёнка»</li>
+            <li>ФЗ-181 «О социальной защите инвалидов»</li>
+          </ul>
+        </Card>
+        <Card className="p-4">
+          <h3 className="font-bold">Ведомственные акты</h3>
+          <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+            <li>Приказ ДОНМ № 666 (Положение о ППк)</li>
+            <li>Распоряжение Минпросвещения № Р-93</li>
+            <li>СанПиН 1.2.3685-21 (Цифровая среда)</li>
+            <li>ФГОС НОО ОВЗ (Приказ № 1598)</li>
+          </ul>
+        </Card>
+      </div>
+      <div className="mt-6 flex justify-center">
+        <Button asChild variant="outline" size="sm">
+          <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer" className="gap-2">
+            Полный реестр на unvrsm.ru <ArrowRight className="size-4" />
+          </a>
+        </Button>
+      </div>
+
       <h2 className="mt-10 text-xl font-bold tracking-tight">Протокол валидации</h2>
       <ol className="mt-3 list-inside list-decimal space-y-1.5 text-sm text-muted-foreground">
         <li>Проверка заявленного маппинга «устройство → метрика».</li>
@@ -77,6 +108,9 @@ function SciencePage() {
         <li>Пилотное исследование не менее 20 детей целевой группы.</li>
         <li>Публикация результатов и присвоение статуса «Валидировано UNIVERSUM».</li>
       </ol>
+      <p className="mt-4 text-xs text-muted-foreground text-center">
+        Данные синхронизированы с реестром отечественного ПО и патентами платформы.
+      </p>
     </div>
   );
 }
