@@ -134,8 +134,22 @@ export function ProductCard({
                   <DrawerTitle>{product.name}</DrawerTitle>
                 </DrawerHeader>
                 <div className="overflow-y-auto px-4 pb-8">
-                   <div className="aspect-video bg-[image:var(--gradient-soft)] rounded-xl flex items-center justify-center mb-6">
+                   <div className="relative aspect-video bg-[image:var(--gradient-soft)] rounded-xl flex items-center justify-center mb-6">
                      <SphereRadar values={profile} height={200} />
+                     <TooltipProvider>
+                       <Tooltip>
+                         <TooltipTrigger asChild>
+                           <button className="absolute right-4 top-4 p-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 hover:bg-background transition-colors">
+                             <Info className="size-4 text-primary" />
+                           </button>
+                         </TooltipTrigger>
+                         <TooltipContent className="max-w-[280px] p-3 text-xs leading-relaxed">
+                           <p className="font-bold mb-1">Как читать радар развития?</p>
+                           <p className="mb-2">Радар показывает интенсивность воздействия продукта на 5 сфер. Если сфера (например, <b>Эмоциональная</b> в «Кидалках») не заполнена, это означает, что устройство не имеет прямого клинически доказанного влияния на неё согласно протоколам UNIVERSUM.</p>
+                           <p>В «Кидалках» основной фокус направлен на <b>Моторную</b> и <b>Когнитивную</b> сферы через зрительно-моторную координацию.</p>
+                         </TooltipContent>
+                       </Tooltip>
+                     </TooltipProvider>
                    </div>
                    <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
                    

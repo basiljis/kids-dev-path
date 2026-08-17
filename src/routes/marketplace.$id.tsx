@@ -12,9 +12,11 @@ import {
   CreditCard,
   FileText,
   ShoppingCart,
+  Info,
 } from "lucide-react";
 import { toast } from "sonner";
 import { BillingForm } from "@/components/universum/billing-form";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   Accordion,
   AccordionContent,
@@ -90,8 +92,22 @@ function ProductPage() {
 
       <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_340px]">
         <div className="space-y-8">
-          <div className="overflow-hidden rounded-2xl border border-border/70 bg-[image:var(--gradient-soft)] p-6">
+          <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-[image:var(--gradient-soft)] p-6">
             <SphereRadar values={profile} height={280} />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button className="absolute right-4 top-4 p-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 hover:bg-background transition-colors">
+                    <Info className="size-5 text-primary" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-[300px] p-4 text-sm leading-relaxed">
+                  <p className="font-bold mb-2">Анализ профиля воздействия</p>
+                  <p className="mb-2 text-muted-foreground">Форма радара отражает специализацию устройства. Отсутствие заполнения в определенных секторах (например, в Эмоциональном блоке) указывает на то, что данное решение не предназначено для коррекции дефицитов в этой области.</p>
+                  <p className="text-muted-foreground italic text-xs">Все данные подтверждены исследованиями в научной базе ниже.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
 
           <div>
