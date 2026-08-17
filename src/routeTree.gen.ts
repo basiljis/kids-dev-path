@@ -10,17 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ScienceRouteImport } from './routes/science'
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
 import { Route as MarketplaceIdRouteImport } from './routes/marketplace.$id'
 import { Route as MarketplaceRecommendationsRouteImport } from './routes/marketplace.recommendations'
-import { Route as ParentDashboardRouteImport } from './routes/parent.dashboard'
 import { Route as VendorAddProductRouteImport } from './routes/vendor.add-product'
+import { Route as AuthenticatedParentDashboardRouteImport } from './routes/_authenticated.parent.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
@@ -28,10 +35,20 @@ const AnalyticsRoute = AnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScienceRoute = ScienceRouteImport.update({
   id: '/science',
   path: '/science',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
+  getParentRoute: () => AuthRoute,
 } as any)
 const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
   id: '/marketplace/',
@@ -49,88 +66,104 @@ const MarketplaceRecommendationsRoute =
     path: '/marketplace/recommendations',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ParentDashboardRoute = ParentDashboardRouteImport.update({
-  id: '/parent/dashboard',
-  path: '/parent/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const VendorAddProductRoute = VendorAddProductRouteImport.update({
   id: '/vendor/add-product',
   path: '/vendor/add-product',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedParentDashboardRoute =
+  AuthenticatedParentDashboardRouteImport.update({
+    id: '/parent/dashboard',
+    path: '/parent/dashboard',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
+  '/auth': typeof AuthRouteWithChildren
   '/science': typeof ScienceRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
   '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
-  '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
+  '/parent/dashboard': typeof AuthenticatedParentDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AnalyticsRoute
+  '/auth': typeof AuthRouteWithChildren
   '/science': typeof ScienceRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
   '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
-  '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace': typeof MarketplaceIndexRoute
+  '/parent/dashboard': typeof AuthenticatedParentDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/analytics': typeof AnalyticsRoute
+  '/auth': typeof AuthRouteWithChildren
   '/science': typeof ScienceRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/marketplace/$id': typeof MarketplaceIdRoute
   '/marketplace/recommendations': typeof MarketplaceRecommendationsRoute
-  '/parent/dashboard': typeof ParentDashboardRoute
   '/vendor/add-product': typeof VendorAddProductRoute
   '/marketplace/': typeof MarketplaceIndexRoute
+  '/_authenticated/parent/dashboard': typeof AuthenticatedParentDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/analytics'
+    | '/auth'
     | '/science'
+    | '/auth/callback'
     | '/marketplace/$id'
     | '/marketplace/recommendations'
-    | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace/'
+    | '/parent/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/analytics'
+    | '/auth'
     | '/science'
+    | '/auth/callback'
     | '/marketplace/$id'
     | '/marketplace/recommendations'
-    | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace'
+    | '/parent/dashboard'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/analytics'
+    | '/auth'
     | '/science'
+    | '/auth/callback'
     | '/marketplace/$id'
     | '/marketplace/recommendations'
-    | '/parent/dashboard'
     | '/vendor/add-product'
     | '/marketplace/'
+    | '/_authenticated/parent/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRoute
+  AuthRoute: typeof AuthRouteWithChildren
   ScienceRoute: typeof ScienceRoute
   MarketplaceIdRoute: typeof MarketplaceIdRoute
   MarketplaceRecommendationsRoute: typeof MarketplaceRecommendationsRoute
-  ParentDashboardRoute: typeof ParentDashboardRoute
   VendorAddProductRoute: typeof VendorAddProductRoute
   MarketplaceIndexRoute: typeof MarketplaceIndexRoute
 }
@@ -144,11 +177,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/analytics': {
       id: '/analytics'
       path: '/analytics'
       fullPath: '/analytics'
       preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/science': {
@@ -157,6 +204,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/science'
       preLoaderRoute: typeof ScienceRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/marketplace/': {
       id: '/marketplace/'
@@ -179,13 +233,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketplaceRecommendationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/parent/dashboard': {
-      id: '/parent/dashboard'
-      path: '/parent/dashboard'
-      fullPath: '/parent/dashboard'
-      preLoaderRoute: typeof ParentDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/vendor/add-product': {
       id: '/vendor/add-product'
       path: '/vendor/add-product'
@@ -193,16 +240,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VendorAddProductRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/parent/dashboard': {
+      id: '/_authenticated/parent/dashboard'
+      path: '/parent/dashboard'
+      fullPath: '/parent/dashboard'
+      preLoaderRoute: typeof AuthenticatedParentDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedParentDashboardRoute: typeof AuthenticatedParentDashboardRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedParentDashboardRoute: AuthenticatedParentDashboardRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+interface AuthRouteChildren {
+  AuthCallbackRoute: typeof AuthCallbackRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthCallbackRoute: AuthCallbackRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AnalyticsRoute: AnalyticsRoute,
+  AuthRoute: AuthRouteWithChildren,
   ScienceRoute: ScienceRoute,
   MarketplaceIdRoute: MarketplaceIdRoute,
   MarketplaceRecommendationsRoute: MarketplaceRecommendationsRoute,
-  ParentDashboardRoute: ParentDashboardRoute,
   VendorAddProductRoute: VendorAddProductRoute,
   MarketplaceIndexRoute: MarketplaceIndexRoute,
 }
