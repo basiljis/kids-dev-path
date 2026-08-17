@@ -43,11 +43,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-lg bg-[image:var(--gradient-primary)] text-primary-foreground">
-            <ShieldCheck className="size-4" />
-          </span>
+          <img 
+            src="/logo.png" 
+            alt="UNIVERSUM Logo" 
+            className="h-8 w-8 object-contain" 
+          />
           <span className="text-lg font-extrabold tracking-tight">UNIVERSUM</span>
         </Link>
+
 
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
