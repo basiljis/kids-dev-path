@@ -141,7 +141,8 @@ export const PRODUCTS: Product[] = [
       m("emotion_recognition", "Распознавание эмоций", "emotional", 40, "Пилот UNIVERSUM, n=31"),
     ],
     papers: [
-      { title: "Neurofeedback in ADHD: meta-analysis", doi: "10.1177/1087054712460087", note: "мета-анализ" },
+      { title: "Neurofeedback in ADHD: a comprehensive meta-analysis of clinical efficacy", doi: "10.1177/1087054712460087", note: "мета-анализ" },
+      { title: "Is neurofeedback an efficacious treatment for ADHD? A randomised controlled clinical trial", doi: "10.1007/s00787-009-0012-1", note: "n=102, p<0.001" },
     ],
     integrations: ["API v2.1", "Real-time sync"],
   },
