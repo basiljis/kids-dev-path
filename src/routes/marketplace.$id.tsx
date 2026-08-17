@@ -9,6 +9,9 @@ import {
   Timer,
   Users2,
   Wrench,
+  CreditCard,
+  FileText,
+  ShoppingCart,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -256,16 +259,25 @@ function ProductPage() {
                 </TabsContent>
               </Tabs>
               <Separator className="my-4" />
-              <Button className="w-full" onClick={() => toast.success("Заказ добавлен в рецепт")}>
-                Оформить заказ
-              </Button>
-              <Button
-                variant="outline"
-                className="mt-2 w-full"
-                onClick={() => toast("Добавлено в цифровой рецепт")}
-              >
-                Добавить в рецепт
-              </Button>
+              <div className="space-y-2">
+                <Button className="w-full gap-2" onClick={() => toast.success("Переход к оформлению заказа")}>
+                  <ShoppingCart className="size-4" /> Оформить заказ
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full gap-2" 
+                  onClick={() => toast.info("Счёт на оплату по реквизитам сформирован и отправлен на email")}
+                >
+                  <FileText className="size-4" /> Оплата по реквизитам
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="w-full gap-2 text-muted-foreground"
+                  onClick={() => toast("Добавлено в цифровой рецепт")}
+                >
+                  Добавить в рецепт
+                </Button>
+              </div>
               <p className="mt-3 text-xs text-muted-foreground">
                 Совместимость: {product.ovz.map((o) => OVZ_LABELS[o]).join(", ")}
               </p>
