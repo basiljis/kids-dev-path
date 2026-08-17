@@ -145,11 +145,17 @@ export function ProductCard({
                              <Info className="size-4 text-primary" />
                            </button>
                          </TooltipTrigger>
-                         <TooltipContent className="max-w-[280px] p-3 text-xs leading-relaxed">
-                           <p className="font-bold mb-1">Как читать радар развития?</p>
-                           <p className="mb-2">Радар показывает интенсивность воздействия продукта на 5 сфер. Если сфера (например, <b>Эмоциональная</b> в «Кидалках») не заполнена, это означает, что устройство не имеет прямого клинически доказанного влияния на неё согласно протоколам UNIVERSUM.</p>
-                           <p>В «Кидалках» основной фокус направлен на <b>Моторную</b> и <b>Когнитивную</b> сферы через зрительно-моторную координацию.</p>
-                         </TooltipContent>
+                          <TooltipContent className="max-w-[320px] p-0 overflow-hidden border-none shadow-2xl">
+                            <div className="bg-[#1e2b5e] text-white p-5 space-y-3">
+                              <p className="font-bold text-base leading-tight">Как читать радар развития?</p>
+                              <p className="text-[14px] leading-relaxed opacity-90">
+                                Радар показывает интенсивность воздействия продукта на 5 сфер. Если сфера (например, <b className="text-white font-bold underline decoration-white/30">Эмоциональная</b> в «Кидалках») не заполнена, это означает, что устройство не имеет прямого клинически доказанного влияния на неё согласно протоколам UNIVERSUM.
+                              </p>
+                              <p className="text-[14px] leading-relaxed opacity-90 pt-1">
+                                В «Кидалках» основной фокус направлен на <b className="text-white font-bold underline decoration-white/30">Моторную</b> и <b className="text-white font-bold underline decoration-white/30">Когнитивную</b> сферы.
+                              </p>
+                            </div>
+                          </TooltipContent>
                        </Tooltip>
                      </TooltipProvider>
                    </div>

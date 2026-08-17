@@ -28,7 +28,7 @@ export function SphereRadar({ values, compare, height = 260, compact = false }: 
         <PolarGrid stroke="var(--border)" />
         <PolarAngleAxis
           dataKey="sphere"
-          tick={{ fontSize: compact ? 9 : 12, fill: "var(--muted-foreground)" }}
+          tick={{ fontSize: compact ? 10 : 13, fill: "var(--foreground)", fontWeight: 600 }}
         />
         {!compact && <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />}
         {compare && (

@@ -113,12 +113,12 @@ function Index() {
                 { title: "Выберите решение", text: "Маркетплейс предложит только те тренажеры, которые доказанно помогают в вашей ситуации." },
                 { title: "Занимайтесь дома", text: "Арендуйте или купите оборудование, а результаты тренировок увидит ваш педагог." },
               ].map((step, i) => (
-                <div key={i} className="relative pl-10">
-                  <div className="absolute left-0 top-1 size-7 rounded-full bg-background border-2 border-primary flex items-center justify-center text-xs font-bold text-primary">
+                <div key={i} className="relative pl-12">
+                  <div className="absolute left-0 top-0 size-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary">
                     {i + 1}
                   </div>
-                  <p className="font-semibold text-sm">{step.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{step.text}</p>
+                  <h4 className="font-bold text-base leading-tight">{step.title}</h4>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-foreground/80">{step.text}</p>
                 </div>
               ))}
             </div>
@@ -138,12 +138,12 @@ function Index() {
                 { title: "Обоснуйте закупки", text: "Формируйте перечень оборудования на основе реальной статистики дефицитов в регионе и рекомендаций АИС ППк-Помощник." },
                 { title: "Контролируйте эффект", text: "Отслеживайте динамику развития каждого ребенка через автоматический сбор данных." },
               ].map((step, i) => (
-                <div key={i} className="relative pl-10">
-                  <div className="absolute left-0 top-1 size-7 rounded-full bg-background border-2 border-primary flex items-center justify-center text-xs font-bold text-primary">
+                <div key={i} className="relative pl-12">
+                  <div className="absolute left-0 top-0 size-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary">
                     {i + 1}
                   </div>
-                  <p className="font-semibold text-sm">{step.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{step.text}</p>
+                  <h4 className="font-bold text-base leading-tight">{step.title}</h4>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-foreground/80">{step.text}</p>
                 </div>
               ))}
             </div>
