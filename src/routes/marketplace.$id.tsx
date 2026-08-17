@@ -32,7 +32,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SphereBadge } from "@/components/universum/sphere-badge";
 import { SphereRadar } from "@/components/universum/sphere-radar";
+import { ProductReviews } from "@/components/universum/product-reviews";
 import {
+
   CATEGORY_LABELS,
   CHILDREN,
   OVZ_LABELS,
@@ -254,7 +256,12 @@ function ProductPage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </section>
+            </section>
+
+            <section className="mt-12">
+              <ProductReviews reviews={product.userReviews || []} />
+            </section>
+
         </div>
 
         <aside>

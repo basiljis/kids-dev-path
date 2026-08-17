@@ -42,6 +42,15 @@ export type MetricImpact = {
   basis: string;
 };
 
+export type Review = {
+  id: string;
+  userName: string;
+  rating: number;
+  date: string;
+  text: string;
+  usageTime?: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -63,7 +72,9 @@ export type Product = {
   metrics: MetricImpact[];
   papers: { title: string; doi: string; note: string }[];
   integrations: string[];
+  userReviews?: Review[];
 };
+
 
 const m = (
   metric: string,
@@ -113,6 +124,11 @@ export const PRODUCTS: Product[] = [
       { title: "Bilateral motor coordination in children with autism spectrum disorder", doi: "10.1080/17518423.2015.1065538", note: "n=22" },
     ],
     integrations: ["API v2.1", "Webhook", "АИС ППк"],
+    userReviews: [
+      { id: "r1", userName: "Марина С.", rating: 5, date: "12.08.2026", text: "Отличный тренажер для развития крупной моторики. Ребенок в восторге от игровых сценариев, а я вижу реальный прогресс.", usageTime: "6 месяцев" },
+      { id: "r2", userName: "Алексей В.", rating: 4, date: "05.07.2026", text: "Хорошее решение для центра. Установка заняла чуть больше времени, чем ожидали, но функционал перекрывает этот минус.", usageTime: "3 месяца" }
+    ],
+
   },
   {
     id: "muse-bos",
