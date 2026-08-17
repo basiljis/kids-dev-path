@@ -120,9 +120,19 @@ function SciencePage() {
                 <span>{p.note}</span>
               </div>
             </div>
-            <Badge variant="secondary" className="w-fit shrink-0">
-              {p.product}
-            </Badge>
+            <div className="flex items-center gap-3">
+              <a 
+                href={`https://unvrsm.ru/research/${p.doi}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-primary hover:underline flex items-center gap-1"
+              >
+                Читать на русском <ExternalLink className="size-3" />
+              </a>
+              <Badge variant="secondary" className="w-fit shrink-0">
+                {p.product}
+              </Badge>
+            </div>
           </div>
         ))}
       </div>
@@ -210,9 +220,14 @@ function SciencePage() {
           Каждое устройство проходит 4 этапа проверки: маппинг на метрику, корреляционный анализ (r ≥ 0.7), 
           пилотное исследование (n ≥ 20) и сертификацию.
         </p>
-        <div className="mt-6 flex justify-center gap-4">
+        <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
           <Button asChild>
-            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer">Полная документация</a>
+            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer">Полная документация (RU)</a>
+          </Button>
+          <Button asChild variant="outline">
+            <a href="https://unvrsm.ru/research-methodology" target="_blank" rel="noopener noreferrer" className="gap-2">
+              Методология исследований <ExternalLink className="size-4" />
+            </a>
           </Button>
         </div>
       </div>
