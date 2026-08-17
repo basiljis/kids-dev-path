@@ -71,6 +71,9 @@ function Index() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
+                <Link to="/registry">Реестр оборудования</Link>
+              </Button>
+              <Button size="lg" variant="ghost" asChild>
                 <Link to="/vendor/add-product">Я производитель</Link>
               </Button>
             </div>
