@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BadgeCheck, Clock3, Sparkles, Target } from "lucide-react";
+import { BadgeCheck, Clock3, ExternalLink, Info, Sparkles, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -87,9 +87,22 @@ export function ProductCard({
 
         <ul className="space-y-1 text-xs text-muted-foreground">
           {top.map((m) => (
-            <li key={m.metric}>
-              Улучшает «{m.metricLabel}» на{" "}
+            <li key={m.metric} className="flex items-center gap-1">
+              <span>Улучшает «{m.metricLabel}» на </span>
               <span className="font-semibold text-foreground">{m.impact}%</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button className="inline-flex cursor-help items-center opacity-70 hover:opacity-100">
+                      <Info className="size-3" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-[240px] p-2 text-[10px] leading-relaxed">
+                    <p className="font-semibold mb-1">Научное обоснование:</p>
+                    {m.basis}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </li>
           ))}
         </ul>
@@ -117,17 +130,43 @@ export function ProductCard({
                    <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
                    
                    <div className="space-y-4">
-                     <div>
-                       <h4 className="text-sm font-bold mb-2">Ключевые показатели</h4>
-                       <div className="grid grid-cols-2 gap-2">
-                         {product.metrics.map(m => (
-                           <div key={m.metric} className="p-2 border rounded-lg">
-                             <p className="text-[10px] text-muted-foreground uppercase">{m.metricLabel}</p>
-                             <p className="text-sm font-bold">+{m.impact}%</p>
-                           </div>
-                         ))}
-                       </div>
-                     </div>
+                    <div>
+                      <h4 className="text-sm font-bold mb-2">Ключевые показатели и обоснование</h4>
+                      <div className="space-y-3">
+                        {product.metrics.map(m => (
+                          <div key={m.metric} className="p-3 border rounded-lg bg-card/50">
+                            <div className="flex justify-between items-start mb-1">
+                              <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{m.metricLabel}</p>
+                              <p className="text-sm font-bold text-primary">+{m.impact}%</p>
+                            </div>
+                            <p className="text-[11px] leading-relaxed text-muted-foreground">{m.basis}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {product.papers.length > 0 && (
+                      <div className="pt-2">
+                        <h4 className="text-sm font-bold mb-2">Научные публикации</h4>
+                        <div className="space-y-2">
+                          {product.papers.map(p => (
+                            <a 
+                              key={p.doi}
+                              href={`https://doi.org/${p.doi}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 p-2 rounded-md bg-muted/50 text-[11px] text-foreground hover:bg-muted transition-colors border border-transparent hover:border-border"
+                            >
+                              <ExternalLink className="size-3 shrink-0 text-primary" />
+                              <div className="overflow-hidden">
+                                <p className="font-medium truncate">{p.title}</p>
+                                <p className="text-[9px] text-muted-foreground">DOI: {p.doi} · {p.note}</p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                      <div className="pt-4 flex flex-col gap-2">
                         <Button className="w-full" asChild>
