@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { SphereRadar } from "@/components/universum/sphere-radar";
+import { ProductReviews } from "@/components/universum/product-reviews";
 import { CHILDREN, generatePrescription, SPHERES } from "@/lib/universum-data";
+
 
 export const Route = createFileRoute("/_authenticated/parent/dashboard")({
   head: () => ({
@@ -103,6 +105,19 @@ function ParentDashboard() {
               ))}
             </div>
           </section>
+
+          <section>
+            <h2 className="mb-4 flex items-center gap-2 text-xl font-bold">
+              Мои отзывы об оборудовании
+            </h2>
+            <ProductReviews 
+              showUsageTime 
+              reviews={[
+                { id: "my-r1", userName: "Дима К. (Родитель)", rating: 5, date: "15.08.2026", text: "Используем Интерактивную стену уже полгода. Прогресс в координации заметен невооруженным глазом. Очень рекомендую для детей с РАС.", usageTime: "6 месяцев" }
+              ]} 
+            />
+          </section>
+
         </div>
 
         <aside className="space-y-6">

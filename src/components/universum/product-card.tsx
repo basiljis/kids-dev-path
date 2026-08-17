@@ -11,7 +11,9 @@ import { SphereRadar } from "./sphere-radar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { BillingForm } from "./billing-form";
+import { ProductReviews } from "./product-reviews";
 import {
+
   CATEGORY_LABELS,
   formatAgeRange,
   formatPrice,
@@ -191,6 +193,11 @@ export function ProductCard({
                         </div>
                       </div>
                     )}
+ 
+                    <div className="pt-4 border-t">
+                      <ProductReviews reviews={product.userReviews || []} />
+                    </div>
+
 
                      <div className="pt-4 flex flex-col gap-2">
                         <Button className="w-full gap-2" onClick={() => toast.success("Переход к оформлению заказа")}>
