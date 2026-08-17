@@ -281,11 +281,64 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <p className="text-xs leading-relaxed">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="text-xs hover:text-primary transition-colors cursor-pointer text-left flex items-center gap-1.5">
+                    <ShieldCheck className="size-3 text-primary" />
+                    Безопасность (ФЗ-152)
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <ShieldCheck className="size-5 text-primary" />
+                      Безопасность и соответствие ФЗ-152
+                    </DialogTitle>
+                    <DialogDescription className="pt-4 space-y-4 text-foreground">
+                      <p>
+                        Платформа UNIVERSUM обеспечивает высший уровень защиты персональных данных в соответствии с законодательством РФ:
+                      </p>
+                      <div className="grid gap-4 mt-2">
+                        <div className="p-3 bg-muted rounded-lg border border-border">
+                          <p className="font-bold text-sm">Уровень защищённости УЗ-1</p>
+                          <p className="text-xs text-muted-foreground mt-1">Максимальный уровень защиты для информационных систем, обрабатывающих специальные категории персональных данных (сведения о состоянии здоровья).</p>
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex gap-3 items-start">
+                            <div className="p-1 bg-primary/10 rounded mt-0.5">
+                              <Info className="size-4 text-primary" />
+                            </div>
+                            <p className="text-sm">Размещение данных исключительно в защищённых ЦОД на территории Российской Федерации.</p>
+                          </div>
+                          <div className="flex gap-3 items-start">
+                            <div className="p-1 bg-primary/10 rounded mt-0.5">
+                              <Info className="size-4 text-primary" />
+                            </div>
+                            <p className="text-sm">Использование сертифицированных средств криптографической защиты информации (СКЗИ).</p>
+                          </div>
+                          <div className="flex gap-3 items-start">
+                            <div className="p-1 bg-primary/10 rounded mt-0.5">
+                              <Info className="size-4 text-primary" />
+                            </div>
+                            <p className="text-sm">Регулярный аудит безопасности и контроль доступа согласно ролевой модели.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <Button asChild variant="outline" className="w-full mt-4">
+                        <Link to="/science">Подробнее в Научной базе</Link>
+                      </Button>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </li>
+            <li>
+              <p className="text-xs leading-relaxed opacity-70">
                 Данные детей обрабатываются по 152-ФЗ и доступны только в защищённом
                 личном кабинете.
               </p>
             </li>
+
           </ul>
         </div>
       </div>
