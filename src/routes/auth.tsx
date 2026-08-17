@@ -23,6 +23,9 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [role, setRole] = useState<"parent" | "vendor" | "org">("parent");
+
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +36,14 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: {
+              full_name: fullName,
+              role: role,
+            }
+          }
         });
+
         if (error) throw error;
         toast.success("Регистрация успешна! Проверьте почту для подтверждения.");
       } else {
@@ -72,6 +82,18 @@ function AuthPage() {
         </CardHeader>
         <form onSubmit={handleAuth}>
           <CardContent className="space-y-4">
+            {isSignUp && (
+              <div className="space-y-2">
+                <Label htmlFor="fullName">ФИО / Название организации</Label>
+                <Input
+                  id="fullName"
+                  placeholder="Иванов Иван Иванович"
+                  required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -83,6 +105,38 @@ function AuthPage() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+            {isSignUp && (
+              <div className="space-y-2">
+                <Label>Тип профиля</Label>
+                <div className="grid grid-cols-3 gap-2">
+                  <Button
+                    type="button"
+                    variant={role === "parent" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("parent")}
+                  >
+                    Родитель
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={role === "org" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("org")}
+                  >
+                    Организация
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={role === "vendor" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("vendor")}
+                  >
+                    Производитель
+                  </Button>
+                </div>
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="password">Пароль</Label>
               <Input
