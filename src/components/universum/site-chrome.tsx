@@ -18,7 +18,7 @@ import {
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
   { to: "/marketplace/recommendations", label: "План развития (Пример)" },
-  { to: "/vendor/add-product", label: "Для производителей" },
+  { to: "/vendor/add-product", label: "Производителям" },
   { to: "/science", label: "Научная база" },
   { to: "/instructions", label: "Инструкции" },
   { to: "/parent/dashboard", label: "Кабинет" },
@@ -170,7 +170,7 @@ export function SiteFooter() {
               <Link to="/marketplace/recommendations">Пример плана развития</Link>
             </li>
             <li>
-              <Link to="/vendor/add-product">Для производителей</Link>
+              <Link to="/vendor/add-product">Партнерство с производителями</Link>
             </li>
           </ul>
         </div>
