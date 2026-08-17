@@ -139,6 +139,14 @@ function RegistryPage() {
             <p className="text-xs text-muted-foreground leading-relaxed">
               Реестр синхронизирован с нормативами Р-1016 и требованиями к оснащению коррекционных кабинетов.
             </p>
+            <a 
+              href="https://unvrsm.ru/legal" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-2 text-[10px] text-primary hover:underline flex items-center gap-1"
+            >
+              Добавить ссылку на документ
+            </a>
           </Card>
         </div>
 

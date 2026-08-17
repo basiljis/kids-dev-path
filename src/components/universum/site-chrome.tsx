@@ -333,6 +333,16 @@ export function SiteFooter() {
               </Dialog>
             </li>
             <li>
+              <a 
+                href="https://unvrsm.ru/legal" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xs hover:text-primary transition-colors flex items-center gap-1.5"
+              >
+                Правовая информация (unvrsm.ru)
+              </a>
+            </li>
+            <li>
               <p className="text-xs leading-relaxed opacity-70">
                 Данные детей обрабатываются по 152-ФЗ и доступны только в защищённом
                 личном кабинете.
