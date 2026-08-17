@@ -203,7 +203,8 @@ export function ProductCard({
             </Button>
           )}
         </div>
-      </Card>
+      </div>
+    </Card>
     </>
   );
 }
