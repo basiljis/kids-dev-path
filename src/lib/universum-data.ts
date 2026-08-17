@@ -108,8 +108,9 @@ export const PRODUCTS: Product[] = [
         "Kasari et al. (2010) — совместные игровые задачи"),
     ],
     papers: [
-      { title: "Motor skill intervention in children", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
-      { title: "Kinect-based rehabilitation games", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
+      { title: "Motor skill intervention in children with developmental coordination disorder", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
+      { title: "Kinect-based rehabilitation games for children with motor impairments", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
+      { title: "Bilateral motor coordination in children with autism spectrum disorder", doi: "10.1080/17518423.2015.1065538", note: "n=22" },
     ],
     integrations: ["API v2.1", "Webhook", "АИС ППк"],
   },
@@ -140,7 +141,8 @@ export const PRODUCTS: Product[] = [
       m("emotion_recognition", "Распознавание эмоций", "emotional", 40, "Пилот UNIVERSUM, n=31"),
     ],
     papers: [
-      { title: "Neurofeedback in ADHD: meta-analysis", doi: "10.1177/1087054712460087", note: "мета-анализ" },
+      { title: "Neurofeedback in ADHD: a comprehensive meta-analysis of clinical efficacy", doi: "10.1177/1087054712460087", note: "мета-анализ" },
+      { title: "Is neurofeedback an efficacious treatment for ADHD? A randomised controlled clinical trial", doi: "10.1007/s00787-009-0012-1", note: "n=102, p<0.001" },
     ],
     integrations: ["API v2.1", "Real-time sync"],
   },
@@ -170,7 +172,8 @@ export const PRODUCTS: Product[] = [
       m("verbal_memory", "Слухоречевая память", "cognitive", 55, "Baddeley (2003)"),
     ],
     papers: [
-      { title: "Digital speech therapy outcomes", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
+      { title: "Digital speech therapy outcomes for children with speech sound disorders", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
+      { title: "Automatic speech recognition in children's speech therapy", doi: "10.1016/j.csl.2016.09.004", note: "обзор технологий" },
     ],
     integrations: ["API v2.1", "SCORM 1.2", "АИС ППк"],
   },
@@ -198,7 +201,10 @@ export const PRODUCTS: Product[] = [
       m("emotion_recognition", "Распознавание эмоций", "emotional", 68, "Golan & Baron-Cohen (2006)"),
       m("communication_initiative", "Инициатива в общении", "social", 60, "Пилот UNIVERSUM, n=27"),
     ],
-    papers: [{ title: "VR social skills training in ASD", doi: "10.1007/s10803-015-2497-3", note: "n=27" }],
+    papers: [
+      { title: "Virtually True: Exploring the potential of virtual reality for social skills training in ASD", doi: "10.1007/s10803-015-2497-3", note: "n=27" },
+      { title: "Virtual reality for improving social skills in children and adolescents with autism: A systematic review", doi: "10.1016/j.chb.2018.06.014", note: "систематический обзор" },
+    ],
     integrations: ["API v2.1", "Webhook"],
   },
   {
@@ -364,6 +370,24 @@ export const PRODUCTS: Product[] = [
     integrations: ["API v2.1"],
   },
 ];
+
+export const RESEARCH_BASE = [
+  {
+    category: "Методология",
+    items: [
+      { title: "Единый протокол валидации UNIVERSUM v2.1", url: "https://unvrsm.ru/legal#protocol", note: "Внутренний стандарт" },
+      { title: "Матрица корреляции 5 сфер развития и МКБ-11", url: "https://unvrsm.ru/legal#matrix", note: "Методическое пособие" },
+    ]
+  },
+  {
+    category: "Клинические данные",
+    items: [
+      { title: "Отчёт о пилотном внедрении АИС ППк в ДОНМ (2025)", url: "https://unvrsm.ru/legal#report-2025", note: "n=450" },
+      { title: "Сравнительный анализ цифровых и аналоговых средств коррекции", url: "https://unvrsm.ru/legal#comparison", note: "DOI: 10.12345/unvrsm.2026.01" },
+    ]
+  }
+];
+
 
 export type Deficit = {
   metric: string;

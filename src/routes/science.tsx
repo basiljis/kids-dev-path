@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink } from "lucide-react";
-import { PRODUCTS, SPHERES, SPHERE_ORDER } from "@/lib/universum-data";
+import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE } from "@/lib/universum-data";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
@@ -106,21 +106,59 @@ function SciencePage() {
       <div className="mt-6 space-y-4">
         {papers.map((p) => (
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5">
-            <div>
+            <div className="flex-1">
               <p className="font-bold">{p.title}</p>
               <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1"><BookOpen className="size-3" /> DOI: {p.doi}</span>
+                <a 
+                  href={`https://doi.org/${p.doi}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-primary hover:underline"
+                >
+                  <BookOpen className="size-3" /> DOI: {p.doi}
+                </a>
                 <span>{p.note}</span>
               </div>
             </div>
-            <Badge variant="secondary" className="w-fit">
+            <Badge variant="secondary" className="w-fit shrink-0">
               {p.product}
             </Badge>
           </div>
         ))}
       </div>
 
+
+      <h2 className="mt-16 text-2xl font-bold tracking-tight">Внутренние исследования и протоколы</h2>
+      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        {RESEARCH_BASE.map((group) => (
+          <Card key={group.category} className="p-6">
+            <h3 className="font-bold text-lg mb-4">{group.category}</h3>
+            <ul className="space-y-4">
+              {group.items.map((item) => (
+                <li key={item.title}>
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                      {item.title}
+                    </p>
+                    <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
+                      <span>{item.note}</span>
+                      <ExternalLink className="size-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Нормативно-правовое регулирование</h2>
+
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <div className="space-y-4">
           <h3 className="font-bold flex items-center gap-2"><ArrowRight className="size-4 text-primary" /> Законодательство РФ</h3>
