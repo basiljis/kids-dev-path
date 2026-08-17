@@ -41,7 +41,7 @@ export function BillingForm({ product, open, onOpenChange }: BillingFormProps) {
         // Загружаем базовые данные из профиля
         setFormData(prev => ({
           ...prev,
-          fullName: user.user_metadata?.full_name || "",
+          fullName: user.user_metadata?.['full_name'] || "",
           email: user.email || "",
         }));
         
