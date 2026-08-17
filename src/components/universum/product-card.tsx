@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BadgeCheck, Clock3, ExternalLink, Info, Sparkles, Target } from "lucide-react";
+import { BadgeCheck, Clock3, ExternalLink, Info, Sparkles, Target, ShoppingCart, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -169,13 +169,16 @@ export function ProductCard({
                     )}
 
                      <div className="pt-4 flex flex-col gap-2">
-                        <Button className="w-full" asChild>
+                        <Button className="w-full gap-2" onClick={() => toast.success("Переход к оформлению заказа")}>
+                          <ShoppingCart className="size-4" /> Оформить заказ
+                        </Button>
+                        <Button variant="outline" className="w-full gap-2" onClick={() => toast.info("Счёт на оплату по реквизитам отправлен на email")}>
+                          <FileText className="size-4" /> Оплата по реквизитам
+                        </Button>
+                        <Button variant="ghost" className="w-full text-muted-foreground" asChild>
                           <Link to="/marketplace/$id" params={{ id: product.id }}>
                             Открыть полную страницу
                           </Link>
-                        </Button>
-                        <Button variant="outline" className="w-full">
-                          Добавить в рецепт
                         </Button>
                      </div>
                    </div>
