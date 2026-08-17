@@ -114,7 +114,7 @@ function InstructionsPage() {
                 <p>Используйте научную базу для формирования ИПКР:</p>
                 <ul className="list-disc pl-5 mt-2 space-y-2">
                   <li>Просмотр маппинга «устройство — метрика» в <Link to="/science" className="text-primary hover:underline">Научной базе</Link>.</li>
-                  <li>Анализ прогнозируемого влияния на дефициты (impact > 60%).</li>
+                  <li>Анализ прогнозируемого влияния на дефициты (impact &gt; 60%).</li>
                   <li>Добавление собственных разработок через <Link to="/vendor/add-product" className="text-primary hover:underline">панель производителя</Link>.</li>
                 </ul>
               </AccordionContent>
