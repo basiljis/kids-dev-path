@@ -470,14 +470,424 @@ export type RegionalStat = {
 
 export const REGIONAL_STATS: RegionalStat[] = [
   {
-    region: "Московская область",
-    totalChildren: 1240,
-    deficits: { cognitive: 32, speech: 45, emotional: 28, social: 38, motor: 22 },
+    region: "Алтайский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Амурская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Архангельская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Астраханская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Белгородская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Брянская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Владимирская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Волгоградская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Вологодская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Воронежская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Еврейская автономная область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Забайкальский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ивановская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Иркутская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Кабардино-Балкарская Республика",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Калининградская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Калужская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Камчатский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Карачаево-Черкесская Республика",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Кемеровская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Кировская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Костромская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Краснодарский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Красноярский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Курганская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Курская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
   },
   {
     region: "Ленинградская область",
     totalChildren: 890,
     deficits: { cognitive: 28, speech: 40, emotional: 35, social: 30, motor: 18 },
+  },
+  {
+    region: "Липецкая область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Магаданская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Мурманская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ненецкий автономный округ",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Нижегородская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Новгородская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Новосибирская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Омская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Оренбургская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Орловская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Пензенская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Пермский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Приморский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Псковская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Адыгея",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Алтай",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Башкортостан",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Бурятия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Дагестан",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Ингушетия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Калмыкия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Карелия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Коми",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Крым",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Марий Эл",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Мордовия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Саха (Якутия)",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Северная Осетия — Алания",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Татарстан",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Тыва",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Республика Хакасия",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ростовская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Рязанская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Самарская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Саратовская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Сахалинская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Свердловская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Севастополь",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Смоленская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ставропольский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Тамбовская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Тверская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Томская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Тульская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Тюменская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Удмуртская Республика",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ульяновская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Хабаровский край",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ханты-Мансийский автономный округ — Югра",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Челябинская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Чеченская Республика",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Чувашская Республика",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Чукотский автономный округ",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ямало-Ненецкий автономный округ",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "Ярославская область",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "г. Москва",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
+  },
+  {
+    region: "г. Санкт-Петербург",
+    totalChildren: 0,
+    deficits: { cognitive: 0, speech: 0, emotional: 0, social: 0, motor: 0 },
   },
 ];
 
