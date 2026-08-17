@@ -9,7 +9,16 @@ import {
 } from "@/lib/universum-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BrainCircuit, Sparkles } from "lucide-react";
+import { BrainCircuit, Sparkles, FileDown, History, CheckCircle2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 export const Route = createFileRoute("/marketplace/recommendations")({
   head: () => ({
@@ -45,7 +54,7 @@ function RecommendationsPage() {
       <div className="space-y-16">
         {/* Section 1: Deficit-based Personalized Recommendations */}
         <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-border pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border pb-4 gap-4">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-primary/10">
                 <BrainCircuit className="size-6 text-primary" />
@@ -59,10 +68,74 @@ function RecommendationsPage() {
                 </p>
               </div>
             </div>
-            <Badge variant="secondary" className="hidden sm:flex gap-1">
-              <Sparkles className="size-3" /> Smart Match
-            </Badge>
+            <div className="flex items-center gap-3">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <FileDown className="size-4" /> Выписка из ППк
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <History className="size-5 text-primary" />
+                      Обоснование рекомендаций (по результатам ППк)
+                    </DialogTitle>
+                    <DialogDescription className="pt-4 space-y-6 text-foreground">
+                      <div className="rounded-xl border border-border bg-muted/30 p-4">
+                        <h4 className="font-bold text-sm mb-3 uppercase tracking-wider text-muted-foreground">Выявленные дефициты</h4>
+                        <div className="space-y-4">
+                          {child.deficits.map((d) => (
+                            <div key={d.metric} className="flex items-start justify-between gap-4 border-b border-border/50 pb-3 last:border-0 last:pb-0">
+                              <div>
+                                <p className="font-bold">{d.metricLabel}</p>
+                                <p className="text-xs text-muted-foreground">Сфера: {d.sphere}</p>
+                              </div>
+                              <div className="text-right">
+                                <Badge variant={d.level === 'critical_deficit' ? 'destructive' : 'secondary'} className="text-[10px] px-1.5 h-5">
+                                  {d.level === 'critical_deficit' ? 'Критический дефицит' : 'Ниже нормы'}
+                                </Badge>
+                                <p className="text-xs font-mono mt-1">Балл: {d.score}/100</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h4 className="font-bold text-sm uppercase tracking-wider text-muted-foreground">Алгоритм подбора Smart Match</h4>
+                        <div className="grid gap-3">
+                          <div className="flex gap-3">
+                            <CheckCircle2 className="size-4 text-green-500 mt-1 shrink-0" />
+                            <p className="text-sm text-muted-foreground">
+                              <span className="text-foreground font-medium">Валидация возраста:</span> Устройства отфильтрованы по возрастной норме {child.ageMonths / 12} лет.
+                            </p>
+                          </div>
+                          <div className="flex gap-3">
+                            <CheckCircle2 className="size-4 text-green-500 mt-1 shrink-0" />
+                            <p className="text-sm text-muted-foreground">
+                              <span className="text-foreground font-medium">Интенсивность влияния:</span> Отобраны решения с показателем коррекции дефицита {">"}40% по API UNIVERSUM.
+                            </p>
+                          </div>
+                          <div className="flex gap-3">
+                            <CheckCircle2 className="size-4 text-green-500 mt-1 shrink-0" />
+                            <p className="text-sm text-muted-foreground">
+                              <span className="text-foreground font-medium">Научное обоснование:</span> Каждая рекомендация подтверждена DOI-ссылками на исследования.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+              
+              <Badge variant="secondary" className="hidden sm:flex gap-1">
+                <Sparkles className="size-3" /> Smart Match
+              </Badge>
+            </div>
           </div>
+
           
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {personalRecs.map((rec: ProductRecommendation) => (
