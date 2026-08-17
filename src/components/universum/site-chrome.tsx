@@ -43,11 +43,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-lg bg-[image:var(--gradient-primary)] text-primary-foreground">
-            <ShieldCheck className="size-4" />
-          </span>
+          <img 
+            src="/logo.png" 
+            alt="UNIVERSUM Logo" 
+            className="h-8 w-8 object-contain" 
+          />
           <span className="text-lg font-extrabold tracking-tight">UNIVERSUM</span>
         </Link>
+
 
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
@@ -120,10 +123,18 @@ export function SiteFooter() {
     <footer className="mt-16 border-t border-border/70 bg-card">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-base font-extrabold tracking-tight">UNIVERSUM</p>
+          <div className="flex items-center gap-2">
+            <img 
+              src="/logo.png" 
+              alt="UNIVERSUM Logo" 
+              className="h-6 w-6 object-contain grayscale opacity-70" 
+            />
+            <p className="text-base font-extrabold tracking-tight">UNIVERSUM</p>
+          </div>
           <p className="mt-2 text-sm text-muted-foreground">
             Экосистема психолого-педагогического сопровождения детей 0-18 лет.
           </p>
+
           <div className="mt-6 space-y-1 text-xs text-muted-foreground">
             <p className="font-semibold text-foreground">Реквизиты:</p>
             <p>ИП Загладин В.С.</p>
