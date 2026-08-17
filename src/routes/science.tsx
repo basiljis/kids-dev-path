@@ -177,6 +177,32 @@ function SciencePage() {
           </ul>
         </div>
       </div>
+      <h2 className="mt-16 text-2xl font-bold tracking-tight">Совместимость и медицинские коды</h2>
+      <div className="mt-6">
+        <Card className="p-6 bg-muted/30">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="space-y-1">
+              <p className="font-bold text-primary">РАС (F84.0)</p>
+              <p className="text-sm text-muted-foreground">Расстройства аутистического спектра. Включает детский аутизм по МКБ-10.</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-bold text-primary">ЗПР</p>
+              <p className="text-sm text-muted-foreground">Задержка психического развития. Отставание темпов развития психики.</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-bold text-primary">ДЦП</p>
+              <p className="text-sm text-muted-foreground">Детский церебральный паралич. Группа двигательных нарушений.</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-bold text-primary">Без ОВЗ</p>
+              <p className="text-sm text-muted-foreground">Дети без ограниченных возможностей здоровья. Нормотипичное развитие.</p>
+            </div>
+          </div>
+          <p className="mt-6 text-xs text-muted-foreground italic border-t pt-4">
+            * Данные сокращения используются в системе Smart Match для автоматизированного подбора оборудования на основе клинических рекомендаций.
+          </p>
+        </Card>
+      </div>
 
       <div className="mt-16 rounded-2xl bg-primary/5 border border-primary/10 p-8 text-center">
         <h3 className="text-xl font-bold">Протокол валидации UNIVERSUM</h3>
