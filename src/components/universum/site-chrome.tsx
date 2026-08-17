@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
-  { to: "/marketplace/recommendations", label: "Рекомендации" },
+  { to: "/marketplace/recommendations", label: "План развития (Пример)" },
   { to: "/vendor/add-product", label: "Для производителей" },
   { to: "/science", label: "Научная база" },
   { to: "/parent/dashboard", label: "Кабинет родителя" },
