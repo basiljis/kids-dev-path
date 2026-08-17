@@ -36,7 +36,7 @@ function RegistryPage() {
   const [regionFilter, setRegionFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  const regions = REGIONAL_STATS.map(s => s.region);
+  const regions = REGIONAL_STATS.map(s => s.region).sort((a, b) => a.localeCompare('ru'));
   const categories = Object.keys(CATEGORY_LABELS) as ProductCategory[];
 
   const filteredProducts = PRODUCTS.filter(product => {
