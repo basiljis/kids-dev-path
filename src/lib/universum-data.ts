@@ -172,7 +172,8 @@ export const PRODUCTS: Product[] = [
       m("verbal_memory", "Слухоречевая память", "cognitive", 55, "Baddeley (2003)"),
     ],
     papers: [
-      { title: "Digital speech therapy outcomes", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
+      { title: "Digital speech therapy outcomes for children with speech sound disorders", doi: "10.1044/2017_JSLHR-L-16-0334", note: "n=64" },
+      { title: "Automatic speech recognition in children's speech therapy", doi: "10.1016/j.csl.2016.09.004", note: "обзор технологий" },
     ],
     integrations: ["API v2.1", "SCORM 1.2", "АИС ППк"],
   },
