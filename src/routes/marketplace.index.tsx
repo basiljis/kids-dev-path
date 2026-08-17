@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Slider } from "@/components/ui/slider";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductCard } from "@/components/universum/product-card";
 import {
   CATEGORY_LABELS,
@@ -187,7 +188,7 @@ function MarketplacePage() {
             демо-профилем ребёнка.
           </p>
         </div>
-        {isMobile ? (
+        {isMobile && (
           <Drawer>
             <DrawerTrigger asChild>
               <Button variant="outline" size="sm">
@@ -203,20 +204,6 @@ function MarketplacePage() {
               </div>
             </DrawerContent>
           </Drawer>
-        ) : (
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" className="lg:hidden">
-                <SlidersHorizontal className="size-4" /> Фильтры
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
-              <SheetHeader>
-                <SheetTitle>Фильтры</SheetTitle>
-              </SheetHeader>
-              <div className="pt-4">{filters}</div>
-            </SheetContent>
-          </Sheet>
         )}
       </div>
 
@@ -228,17 +215,38 @@ function MarketplacePage() {
         </aside>
 
         <div>
-          {products.length === 0 ? (
-            <p className="rounded-xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              Ничего не найдено. Смягчите фильтры.
-            </p>
-          ) : (
-            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-              {products.map((p) => (
-                <ProductCard key={p.id} product={p} recommended={recommended.has(p.id)} />
-              ))}
+          <Tabs defaultValue="products" className="w-full">
+            <div className="flex items-center justify-between mb-6">
+              <TabsList>
+                <TabsTrigger value="products" className="gap-2">
+                  <Search className="size-4" /> Товары
+                </TabsTrigger>
+                <TabsTrigger value="filters" className="gap-2 lg:hidden">
+                  <SlidersHorizontal className="size-4" /> Фильтры
+                </TabsTrigger>
+              </TabsList>
             </div>
-          )}
+
+            <TabsContent value="products">
+              {products.length === 0 ? (
+                <p className="rounded-xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+                  Ничего не найдено. Смягчите фильтры.
+                </p>
+              ) : (
+                <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  {products.map((p) => (
+                    <ProductCard key={p.id} product={p} recommended={recommended.has(p.id)} />
+                  ))}
+                </div>
+              )}
+            </TabsContent>
+
+            <TabsContent value="filters" className="lg:hidden">
+              <div className="rounded-xl border border-border/70 bg-card p-5 shadow-[var(--shadow-card)]">
+                {filters}
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
