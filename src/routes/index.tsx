@@ -110,26 +110,6 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-14">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-bold tracking-tight">Рекомендации по демо-профилю</h2>
-          <Button variant="ghost" asChild>
-            <Link to="/marketplace">
-              Весь каталог <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-        </div>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Профиль: {child.name}, {Math.round(child.ageMonths / 12)} лет — дефициты в сферах «
-          {SPHERES.motor.label}» и «{SPHERES.speech.label}».
-        </p>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p) => (
-            <ProductCard key={p.id} product={p} recommended />
-          ))}
-        </div>
-      </section>
-
       <section className="mx-auto max-w-7xl px-4 pb-16">
         <h2 className="text-2xl font-bold tracking-tight">Кому подходит</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
