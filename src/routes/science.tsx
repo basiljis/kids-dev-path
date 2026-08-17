@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink } from "lucide-react";
-import { PRODUCTS, SPHERES, SPHERE_ORDER } from "@/lib/universum-data";
+import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE } from "@/lib/universum-data";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
