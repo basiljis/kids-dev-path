@@ -14,6 +14,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { toast } from "sonner";
+import { BillingForm } from "@/components/universum/billing-form";
 import {
   Accordion,
   AccordionContent,
@@ -74,9 +75,15 @@ function ProductPage() {
     : 0;
   const [current, setCurrent] = useState<number[]>([matchedDeficit?.score ?? 30]);
   const projected = Math.min(95, Math.round(current[0]! + (impact || 70) * 0.42));
+  const [billingOpen, setBillingOpen] = useState(false);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
+      <BillingForm 
+        product={product} 
+        open={billingOpen} 
+        onOpenChange={setBillingOpen} 
+      />
       <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground">
         ← Каталог
       </Link>
@@ -266,7 +273,7 @@ function ProductPage() {
                 <Button 
                   variant="outline" 
                   className="w-full gap-2" 
-                  onClick={() => toast.info("Счёт на оплату по реквизитам сформирован и отправлен на email")}
+                  onClick={() => setBillingOpen(true)}
                 >
                   <FileText className="size-4" /> Оплата по реквизитам
                 </Button>

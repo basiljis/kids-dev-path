@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { toast } from "sonner";
 import { BadgeCheck, Clock3, ExternalLink, Info, Sparkles, Target, ShoppingCart, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,7 @@ import { SphereBadge } from "./sphere-badge";
 import { SphereRadar } from "./sphere-radar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { BillingForm } from "./billing-form";
 import {
   CATEGORY_LABELS,
   formatAgeRange,
@@ -30,9 +32,16 @@ export function ProductCard({
   const profile = sphereProfile(product);
   const top = [...product.metrics].sort((a, b) => b.impact - a.impact).slice(0, 2);
   const isMobile = useIsMobile();
+  const [billingOpen, setBillingOpen] = useState(false);
 
   return (
-    <Card className="flex h-full flex-col overflow-hidden border-border/70 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-elegant)]">
+    <>
+      <BillingForm 
+        product={product} 
+        open={billingOpen} 
+        onOpenChange={setBillingOpen} 
+      />
+      <Card className="flex h-full flex-col overflow-hidden border-border/70 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-elegant)]">
       <div className="relative aspect-video bg-[image:var(--gradient-soft)]">
         <div className="absolute inset-0 flex items-center justify-center">
           <SphereRadar values={profile} height={150} compact />
@@ -173,7 +182,7 @@ export function ProductCard({
                         <Button className="w-full gap-2" onClick={() => toast.success("Переход к оформлению заказа")}>
                           <ShoppingCart className="size-4" /> Оформить заказ
                         </Button>
-                        <Button variant="outline" className="w-full gap-2" onClick={() => toast.info("Счёт на оплату по реквизитам отправлен на email")}>
+                        <Button variant="outline" className="w-full gap-2" onClick={() => setBillingOpen(true)}>
                           <FileText className="size-4" /> Оплата по реквизитам
                         </Button>
                         <Button variant="ghost" className="w-full text-muted-foreground" asChild>
@@ -196,5 +205,6 @@ export function ProductCard({
         </div>
       </div>
     </Card>
+    </>
   );
 }
