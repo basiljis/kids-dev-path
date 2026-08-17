@@ -108,8 +108,9 @@ export const PRODUCTS: Product[] = [
         "Kasari et al. (2010) — совместные игровые задачи"),
     ],
     papers: [
-      { title: "Motor skill intervention in children", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
-      { title: "Kinect-based rehabilitation games", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
+      { title: "Motor skill intervention in children with developmental coordination disorder", doi: "10.1016/j.ridd.2005.03.003", note: "n=150, r = 0.82" },
+      { title: "Kinect-based rehabilitation games for children with motor impairments", doi: "10.1109/EMBC.2012.6346663", note: "n=47, p<0.05" },
+      { title: "Bilateral motor coordination in children with autism spectrum disorder", doi: "10.1080/17518423.2015.1065538", note: "n=22" },
     ],
     integrations: ["API v2.1", "Webhook", "АИС ППк"],
   },
