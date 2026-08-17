@@ -82,6 +82,18 @@ function AuthPage() {
         </CardHeader>
         <form onSubmit={handleAuth}>
           <CardContent className="space-y-4">
+            {isSignUp && (
+              <div className="space-y-2">
+                <Label htmlFor="fullName">ФИО / Название организации</Label>
+                <Input
+                  id="fullName"
+                  placeholder="Иванов Иван Иванович"
+                  required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -93,6 +105,38 @@ function AuthPage() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+            {isSignUp && (
+              <div className="space-y-2">
+                <Label>Тип профиля</Label>
+                <div className="grid grid-cols-3 gap-2">
+                  <Button
+                    type="button"
+                    variant={role === "parent" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("parent")}
+                  >
+                    Родитель
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={role === "org" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("org")}
+                  >
+                    Организация
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={role === "vendor" ? "default" : "outline"}
+                    className="text-xs px-1"
+                    onClick={() => setRole("vendor")}
+                  >
+                    Производитель
+                  </Button>
+                </div>
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="password">Пароль</Label>
               <Input
