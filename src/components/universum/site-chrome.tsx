@@ -124,6 +124,12 @@ export function SiteFooter() {
           <p className="mt-2 text-sm text-muted-foreground">
             Экосистема психолого-педагогического сопровождения детей 0-18 лет.
           </p>
+          <div className="mt-6 space-y-1 text-xs text-muted-foreground">
+            <p className="font-semibold text-foreground">Реквизиты:</p>
+            <p>ИП Загладин В.С.</p>
+            <p>ИНН: 770702169499</p>
+            <p>ОГРНИП: 323774600132891</p>
+          </div>
         </div>
         <div className="text-sm">
           <p className="font-semibold">Платформа</p>
@@ -132,10 +138,10 @@ export function SiteFooter() {
               <Link to="/marketplace">Каталог</Link>
             </li>
             <li>
-              <Link to="/parent/dashboard">Цифровой рецепт</Link>
+              <Link to="/marketplace/recommendations">Пример плана развития</Link>
             </li>
             <li>
-              <Link to="/vendor/add-product">Добавить продукт</Link>
+              <Link to="/vendor/add-product">Для производителей</Link>
             </li>
           </ul>
         </div>
@@ -149,13 +155,25 @@ export function SiteFooter() {
             <li>АИС ППк-Помощник</li>
           </ul>
         </div>
-        <div className="text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground">Данные детей</p>
-          <p className="mt-2">
-            Диагнозы и метрики обрабатываются по 152-ФЗ и доступны только в защищённом
-            личном кабинете.
-          </p>
+        <div className="text-sm">
+          <p className="font-semibold text-foreground">Документы</p>
+          <ul className="mt-2 space-y-1.5 text-muted-foreground">
+            <li>
+              <Link to="/privacy-policy" className="hover:text-primary transition-colors">
+                Политика конфиденциальности
+              </Link>
+            </li>
+            <li>
+              <p className="text-xs leading-relaxed">
+                Данные детей обрабатываются по 152-ФЗ и доступны только в защищённом
+                личном кабинете.
+              </p>
+            </li>
+          </ul>
         </div>
+      </div>
+      <div className="border-t border-border/50 py-6 text-center text-xs text-muted-foreground">
+        <p>© 2025–2026 UNIVERSUM. Все права защищены.</p>
       </div>
     </footer>
   );
