@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { 
   BookOpen, 
   Settings, 
@@ -7,12 +8,14 @@ import {
   ShieldCheck, 
   ArrowRight,
   ChevronRight,
-  Info
+  Info,
+  Eye
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SPHERES, SPHERE_ORDER } from "@/lib/universum-data";
+import { DocViewer } from "@/components/universum/doc-viewer";
 
 export const Route = createFileRoute("/instructions")({
   head: () => ({
@@ -28,8 +31,20 @@ export const Route = createFileRoute("/instructions")({
 });
 
 function InstructionsPage() {
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean }>({
+    url: "",
+    title: "",
+    isOpen: false,
+  });
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
+      <DocViewer
+        isOpen={viewer.isOpen}
+        url={viewer.url}
+        title={viewer.title}
+        onClose={() => setViewer((v) => ({ ...v, isOpen: false }))}
+      />
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Инструкции</h1>
@@ -37,10 +52,16 @@ function InstructionsPage() {
             Как работает экосистема UNIVERSUM: от диагностики до реабилитации.
           </p>
         </div>
-        <Button asChild variant="outline">
-          <a href="https://unvrsm.ru/instructions" target="_blank" rel="noopener noreferrer" className="gap-2">
-            Оригинал на unvrsm.ru <ArrowRight className="size-4" />
-          </a>
+        <Button 
+          variant="outline"
+          onClick={() => setViewer({
+            url: "https://unvrsm.ru/instructions",
+            title: "Инструкции UNIVERSUM",
+            isOpen: true
+          })}
+          className="gap-2"
+        >
+          Оригинал на unvrsm.ru <Eye className="size-4" />
         </Button>
       </div>
 

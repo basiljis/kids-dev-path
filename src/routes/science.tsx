@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye } from "lucide-react";
 import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE } from "@/lib/universum-data";
+import { DocViewer } from "@/components/universum/doc-viewer";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
@@ -25,10 +27,22 @@ export const Route = createFileRoute("/science")({
 });
 
 function SciencePage() {
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean }>({
+    url: "",
+    title: "",
+    isOpen: false,
+  });
+
   const papers = PRODUCTS.flatMap((p) => p.papers.map((paper) => ({ ...paper, product: p.name })));
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
+      <DocViewer
+        isOpen={viewer.isOpen}
+        url={viewer.url}
+        title={viewer.title}
+        onClose={() => setViewer((v) => ({ ...v, isOpen: false }))}
+      />
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Научная база и правовой статус</h1>
@@ -121,14 +135,18 @@ function SciencePage() {
               </div>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <a 
-                href={`https://unvrsm.ru/research/${p.doi}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[13px] text-primary hover:underline flex items-center gap-1.5 font-medium whitespace-nowrap"
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-[13px] text-primary h-8 px-2 hover:bg-primary/5 gap-1.5 font-medium whitespace-nowrap"
+                onClick={() => setViewer({
+                  url: `https://unvrsm.ru/research/${p.doi}`,
+                  title: p.title,
+                  isOpen: true
+                })}
               >
-                Читать на русском <ExternalLink className="size-3" />
-              </a>
+                Читать на русском <Eye className="size-3" />
+              </Button>
               <Badge variant="secondary" className="w-fit shrink-0 px-2 py-0 text-[11px] uppercase tracking-wider font-bold">
                 {p.product}
               </Badge>
@@ -146,20 +164,22 @@ function SciencePage() {
             <ul className="space-y-4">
               {group.items.map((item) => (
                 <li key={item.title}>
-                  <a 
-                    href={item.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group block"
+                  <button 
+                    onClick={() => setViewer({
+                      url: item.url,
+                      title: item.title,
+                      isOpen: true
+                    })}
+                    className="group block text-left w-full"
                   >
                     <p className="text-sm font-medium group-hover:text-primary transition-colors">
                       {item.title}
                     </p>
                     <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
                       <span>{item.note}</span>
-                      <ExternalLink className="size-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <Eye className="size-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -174,28 +194,49 @@ function SciencePage() {
           <h3 className="font-bold flex items-center gap-2 text-lg"><ArrowRight className="size-4 text-primary" /> Законодательство РФ</h3>
           <ul className="space-y-4">
             <li className="group">
-              <a href="https://unvrsm.ru/legal/fz-273" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/fz-273",
+                  title: "ФЗ-273 «Об образовании»",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  ФЗ-273 «Об образовании» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  ФЗ-273 «Об образовании» <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Регулирует психолого-педагогическую помощь и деятельность ППк.</p>
-              </a>
+              </button>
             </li>
             <li className="group">
-              <a href="https://unvrsm.ru/legal/fz-152" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/fz-152",
+                  title: "ФЗ-152 «О персональных данных»",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  ФЗ-152 «О персональных данных» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  ФЗ-152 «О персональных данных» <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Требования к защите сведений о детях и родителях.</p>
-              </a>
+              </button>
             </li>
             <li className="group">
-              <a href="https://unvrsm.ru/legal/fz-124" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/fz-124",
+                  title: "ФЗ-124 «О гарантиях прав ребёнка»",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  ФЗ-124 «О гарантиях прав ребёнка» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  ФЗ-124 «О гарантиях прав ребёнка» <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Защита интересов несовершеннолетних в цифровой среде.</p>
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -203,28 +244,49 @@ function SciencePage() {
           <h3 className="font-bold flex items-center gap-2 text-lg"><ArrowRight className="size-4 text-primary" /> Ведомственные приказы</h3>
           <ul className="space-y-4">
             <li className="group">
-              <a href="https://unvrsm.ru/legal/order-666" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/order-666",
+                  title: "Приказ ДОНМ № 666",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  Приказ ДОНМ № 666 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  Приказ ДОНМ № 666 <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Основополагающий регламент работы школьных консилиумов г. Москвы.</p>
-              </a>
+              </button>
             </li>
             <li className="group">
-              <a href="https://unvrsm.ru/legal/order-r93" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/order-r93",
+                  title: "Распоряжение Минпросвещения № Р-93",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  Распоряжение Минпросвещения № Р-93 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  Распоряжение Минпросвещения № Р-93 <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Федеральное положение о ППк.</p>
-              </a>
+              </button>
             </li>
             <li className="group">
-              <a href="https://unvrsm.ru/legal/sanpin-3685" target="_blank" rel="noopener noreferrer" className="block transition-all">
+              <button 
+                onClick={() => setViewer({
+                  url: "https://unvrsm.ru/legal/sanpin-3685",
+                  title: "СанПиН 1.2.3685-21",
+                  isOpen: true
+                })}
+                className="block text-left w-full transition-all"
+              >
                 <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
-                  СанПиН 1.2.3685-21 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                  СанПиН 1.2.3685-21 <Eye className="size-3 opacity-0 group-hover:opacity-100" />
                 </span>
                 <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Гигиенические нормы работы с ЭСО и цифровыми тренажёрами.</p>
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -263,8 +325,14 @@ function SciencePage() {
           пилотное исследование (n ≥ 20) и сертификацию.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-          <Button asChild>
-            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer">Полная документация (RU)</a>
+          <Button
+            onClick={() => setViewer({
+              url: "https://unvrsm.ru/legal",
+              title: "Полная документация (RU)",
+              isOpen: true
+            })}
+          >
+            Полная документация (RU)
           </Button>
           <Button asChild variant="outline">
             <a href="https://unvrsm.ru/research-methodology" target="_blank" rel="noopener noreferrer" className="gap-2">
