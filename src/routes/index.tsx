@@ -77,7 +77,7 @@ function Index() {
               <Button size="lg" variant="outline" asChild>
                 <Link to="/registry">Реестр оборудования</Link>
               </Button>
-              <Button size="lg" variant="ghost" asChild className="text-muted-foreground hover:text-foreground hover:bg-muted/50 border border-transparent hover:border-border/50">
+              <Button size="lg" variant="ghost" asChild className="text-foreground/90 hover:text-foreground hover:bg-muted/80 border border-border/40 hover:border-border/80 shadow-sm">
                 <Link to="/vendor/add-product">Я производитель</Link>
               </Button>
             </div>
