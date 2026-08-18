@@ -105,31 +105,31 @@ function SciencePage() {
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Публикации и доказательная база</h2>
       <div className="mt-6 space-y-4">
         {papers.map((p) => (
-          <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5">
+          <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
             <div className="flex-1">
-              <p className="font-bold">{p.title}</p>
-              <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+              <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted-foreground">
                 <a 
                   href={`https://doi.org/${p.doi}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-primary hover:underline"
+                  className="flex items-center gap-1 text-primary hover:underline font-medium"
                 >
                   <BookOpen className="size-3" /> DOI: {p.doi}
                 </a>
-                <span>{p.note}</span>
+                <span className="opacity-70">{p.note}</span>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 shrink-0">
               <a 
                 href={`https://unvrsm.ru/research/${p.doi}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-primary hover:underline flex items-center gap-1"
+                className="text-[13px] text-primary hover:underline flex items-center gap-1.5 font-medium whitespace-nowrap"
               >
                 Читать на русском <ExternalLink className="size-3" />
               </a>
-              <Badge variant="secondary" className="w-fit shrink-0">
+              <Badge variant="secondary" className="w-fit shrink-0 px-2 py-0 text-[11px] uppercase tracking-wider font-bold">
                 {p.product}
               </Badge>
             </div>

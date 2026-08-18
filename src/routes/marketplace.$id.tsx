@@ -13,6 +13,7 @@ import {
   FileText,
   ShoppingCart,
   Info,
+  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 import { BillingForm } from "@/components/universum/billing-form";
@@ -234,35 +235,64 @@ function ProductPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold tracking-tight">Научная база</h2>
-            <Accordion type="single" collapsible className="mt-3">
-              <AccordionItem value="papers">
-                <AccordionTrigger>Исследования эффективности</AccordionTrigger>
-                <AccordionContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {product.papers.map((p) => (
-                      <li key={p.doi}>
-                        <span className="text-foreground">{p.title}</span> — DOI: {p.doi} ({p.note})
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="method">
-                <AccordionTrigger>Методология измерения</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
+            <h2 className="text-xl font-bold tracking-tight mb-4">Научная база и доказательная эффективность</h2>
+            <div className="space-y-4">
+              {product.papers.map((p) => (
+                <div key={p.doi} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
+                  <div className="flex-1">
+                    <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted-foreground">
+                      <a 
+                        href={`https://doi.org/${p.doi}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-primary hover:underline font-medium"
+                      >
+                        <FileText className="size-3" /> DOI: {p.doi}
+                      </a>
+                      <span className="opacity-70">{p.note}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <a 
+                      href={`https://unvrsm.ru/research/${p.doi}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[13px] text-primary hover:underline flex items-center gap-1.5 font-medium whitespace-nowrap"
+                    >
+                      Читать на русском <ExternalLink className="size-3" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <Accordion type="single" collapsible className="mt-6 border rounded-xl overflow-hidden bg-muted/20">
+              <AccordionItem value="method" className="border-b-0 px-4">
+                <AccordionTrigger className="hover:no-underline py-4">
+                  <span className="flex items-center gap-2 text-sm font-semibold">
+                    <Wrench className="size-4 text-primary" /> Методология измерения
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground pb-4">
                   Устройство фиксирует сырые показатели сессии, нормирует их по возрастным нормам
-                  UNIVERSUM и передаёт нормализованный score (0-100) через API v2.1.
+                  UNIVERSUM и передаёт нормализованный score (0-100) через API v2.1. Используется математическая модель фильтра Калмана для сглаживания артефактов движений.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="gold">
-                <AccordionTrigger>Сравнение с золотым стандартом</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  Коэффициент корреляции r = 0.82 · Точность 87% · Выборка n=150 детей.
+              <Separator />
+              <AccordionItem value="gold" className="border-b-0 px-4">
+                <AccordionTrigger className="hover:no-underline py-4">
+                  <span className="flex items-center gap-2 text-sm font-semibold">
+                    <BadgeCheck className="size-4 text-primary" /> Сравнение с золотым стандартом
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground pb-4">
+                  Валидация проводилась путём сопоставления с экспертными оценками по шкале GMFM-88 и тестом Тулуз-Пьерона. 
+                  Коэффициент корреляции Пирсона r = 0.82. Точность распознавания целевых паттернов 87% на выборке n=150 детей.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-            </section>
+          </section>
 
             <section className="mt-12">
               <ProductReviews reviews={product.userReviews || []} />
