@@ -3,7 +3,12 @@ FROM node:20-slim AS builder
 
 WORKDIR /app
 COPY package.json bun.lock ./
-RUN npm install -g bun && bun install
+
+# Install curl and bun using official installer to avoid npm registry timeouts
+RUN apt-get update && apt-get install -y curl unzip \
+    && curl -fsSL https://bun.sh/install | bash \
+    && mv /root/.bun/bin/bun /usr/local/bin/bun \
+    && bun install
 
 COPY . .
 
