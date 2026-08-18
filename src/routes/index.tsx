@@ -171,41 +171,57 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-20">
+      <section className="mx-auto max-w-7xl px-4 pb-20 mt-16 border-t border-border/40 pt-16">
         <div className="grid gap-6 md:grid-cols-3">
-          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
-            <Award className="size-8 text-primary" />
-            <h3 className="mt-4 font-bold text-lg">Интеллектуальная собственность</h3>
-            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
-              <p><strong>АИС ППк</strong> — Свидетельство РЦИС № 0864-181-444.</p>
-              <p>Депонированная программа для ЭВМ, обеспечивающая автоматизацию консилиумов.</p>
-              <p>Рег. номер: 307-082-374.</p>
+          <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
+            <Award className="size-8 text-primary mb-6" />
+            <h3 className="font-bold text-xl leading-tight">Интеллектуальная собственность</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+              <p>
+                <span className="font-bold text-foreground">АИС ППк</span> — Свидетельство РЦИС № 0864-181-444.
+              </p>
+              <p>
+                Депонированная программа для ЭВМ, обеспечивающая автоматизацию консилиумов.
+              </p>
+              <p className="text-sm text-muted-foreground pt-2 border-t border-border/50">
+                Рег. номер: 307-082-374.
+              </p>
             </div>
           </Card>
 
-          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
-            <ShieldCheck className="size-8 text-primary" />
-            <h3 className="mt-4 font-bold text-lg">Безопасность (ФЗ-152)</h3>
-            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
-              <p>Соответствие уровню защищённости <strong>УЗ-1</strong>.</p>
-              <p>Обработка специальных категорий персональных данных (сведения о здоровье).</p>
-              <p>Размещение в защищённом контуре на территории РФ.</p>
+          <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
+            <ShieldCheck className="size-8 text-primary mb-6" />
+            <h3 className="font-bold text-xl leading-tight">Безопасность (ФЗ-152)</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+              <p>
+                Соответствие уровню защищённости <span className="font-bold text-foreground">УЗ-1</span>.
+              </p>
+              <p>
+                Обработка специальных категорий персональных данных (сведения о здоровье).
+              </p>
+              <p>
+                Размещение в защищённом контуре на территории РФ.
+              </p>
             </div>
           </Card>
 
-          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
-            <Database className="size-8 text-primary" />
-            <h3 className="mt-4 font-bold text-lg">Реестр ПО</h3>
-            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
-              <p>Внесено в <strong>Единый реестр российского ПО</strong> Минцифры России.</p>
-              <p>Совместимость с АИС ДОНМ и государственными информационными системами.</p>
+          <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
+            <Database className="size-8 text-primary mb-6" />
+            <h3 className="font-bold text-xl leading-tight">Реестр ПО</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+              <p>
+                Внесено в <span className="font-bold text-foreground text-balance">Единый реестр российского ПО</span> Минцифры России.
+              </p>
+              <p>
+                Совместимость с АИС ДОНМ и государственными информационными системами.
+              </p>
             </div>
           </Card>
         </div>
-        <div className="mt-8 text-center">
-          <Button variant="link" asChild className="text-muted-foreground">
-            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer" className="gap-2">
-              Правовая информация и документы <ExternalLink className="size-3" />
+        <div className="mt-10 text-center">
+          <Button variant="link" asChild className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer" className="gap-2 text-base">
+              Правовая информация и документы <ExternalLink className="size-4" />
             </a>
           </Button>
         </div>
