@@ -2,12 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Activity,
   ArrowRight,
+  Award,
   BadgeCheck,
   Building2,
+  Database,
+  ExternalLink,
   FlaskConical,
   GraduationCap,
   HeartHandshake,
   Plug,
+  ShieldCheck,
   Users,
 } from "lucide-react";
 import heroImage from "@/assets/hero-universum.jpg";
@@ -152,16 +156,58 @@ function Index() {
       </section>
 
 
-      <section className="mx-auto max-w-7xl px-4 pb-16">
-        <h2 className="text-2xl font-bold tracking-tight">Кому подходит</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="text-3xl font-bold tracking-tight text-center">Кому подходит UNIVERSUM</h2>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {AUDIENCES.map((a) => (
-            <Card key={a.title} className="p-5 shadow-[var(--shadow-card)]">
-              <a.icon className="size-5 text-primary" />
-              <p className="mt-3 font-semibold">{a.title}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{a.text}</p>
+            <Card key={a.title} className="p-6 shadow-[var(--shadow-elegant)] border-border/70 hover:border-primary/30 transition-colors">
+              <div className="rounded-lg bg-primary/10 p-2 w-fit mb-4">
+                <a.icon className="size-6 text-primary" />
+              </div>
+              <h3 className="font-bold text-lg">{a.title}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-foreground/80">{a.text}</p>
             </Card>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-20">
+        <div className="grid gap-6 md:grid-cols-3">
+          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
+            <Award className="size-8 text-primary" />
+            <h3 className="mt-4 font-bold text-lg">Интеллектуальная собственность</h3>
+            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
+              <p><strong>АИС ППк</strong> — Свидетельство РЦИС № 0864-181-444.</p>
+              <p>Депонированная программа для ЭВМ, обеспечивающая автоматизацию консилиумов.</p>
+              <p>Рег. номер: 307-082-374.</p>
+            </div>
+          </Card>
+
+          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
+            <ShieldCheck className="size-8 text-primary" />
+            <h3 className="mt-4 font-bold text-lg">Безопасность (ФЗ-152)</h3>
+            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
+              <p>Соответствие уровню защищённости <strong>УЗ-1</strong>.</p>
+              <p>Обработка специальных категорий персональных данных (сведения о здоровье).</p>
+              <p>Размещение в защищённом контуре на территории РФ.</p>
+            </div>
+          </Card>
+
+          <Card className="p-6 shadow-[var(--shadow-elegant)] border-border/70">
+            <Database className="size-8 text-primary" />
+            <h3 className="mt-4 font-bold text-lg">Реестр ПО</h3>
+            <div className="mt-2 space-y-3 text-sm text-muted-foreground">
+              <p>Внесено в <strong>Единый реестр российского ПО</strong> Минцифры России.</p>
+              <p>Совместимость с АИС ДОНМ и государственными информационными системами.</p>
+            </div>
+          </Card>
+        </div>
+        <div className="mt-8 text-center">
+          <Button variant="link" asChild className="text-muted-foreground">
+            <a href="https://unvrsm.ru/legal" target="_blank" rel="noopener noreferrer" className="gap-2">
+              Правовая информация и документы <ExternalLink className="size-3" />
+            </a>
+          </Button>
         </div>
       </section>
     </div>
