@@ -14,7 +14,9 @@ import {
   ShoppingCart,
   Info,
   ExternalLink,
+  Eye,
 } from "lucide-react";
+import { DocViewer } from "@/components/universum/doc-viewer";
 import { toast } from "sonner";
 import { BillingForm } from "@/components/universum/billing-form";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -81,9 +83,20 @@ function ProductPage() {
   const [current, setCurrent] = useState<number[]>([matchedDeficit?.score ?? 30]);
   const projected = Math.min(95, Math.round(current[0]! + (impact || 70) * 0.42));
   const [billingOpen, setBillingOpen] = useState(false);
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean }>({
+    url: "",
+    title: "",
+    isOpen: false,
+  });
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
+      <DocViewer
+        isOpen={viewer.isOpen}
+        url={viewer.url}
+        title={viewer.title}
+        onClose={() => setViewer((v) => ({ ...v, isOpen: false }))}
+      />
       <BillingForm 
         product={product} 
         open={billingOpen} 
@@ -254,14 +267,18 @@ function ProductPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
-                    <a 
-                      href={`https://unvrsm.ru/research/${p.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] text-primary hover:underline flex items-center gap-1.5 font-medium whitespace-nowrap"
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-[13px] text-primary h-8 px-2 hover:bg-primary/5 gap-1.5 font-medium whitespace-nowrap"
+                      onClick={() => setViewer({
+                        url: `https://unvrsm.ru/research/${p.doi}`,
+                        title: p.title,
+                        isOpen: true
+                      })}
                     >
-                      Читать на русском <ExternalLink className="size-3" />
-                    </a>
+                      Читать на русском <Eye className="size-3" />
+                    </Button>
                   </div>
                 </div>
               ))}
