@@ -169,21 +169,63 @@ function SciencePage() {
 
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Нормативно-правовое регулирование</h2>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+      <div className="mt-6 grid gap-8 sm:grid-cols-2">
         <div className="space-y-4">
-          <h3 className="font-bold flex items-center gap-2"><ArrowRight className="size-4 text-primary" /> Законодательство РФ</h3>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><strong>ФЗ-273 «Об образовании»:</strong> Регулирует психолого-педагогическую помощь и деятельность ППк.</li>
-            <li><strong>ФЗ-152 «О персональных данных»:</strong> Требования к защите сведений о детях и родителях.</li>
-            <li><strong>ФЗ-124 «О гарантиях прав ребёнка»:</strong> Защита интересов несовершеннолетних в цифровой среде.</li>
+          <h3 className="font-bold flex items-center gap-2 text-lg"><ArrowRight className="size-4 text-primary" /> Законодательство РФ</h3>
+          <ul className="space-y-4">
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/fz-273" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  ФЗ-273 «Об образовании» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Регулирует психолого-педагогическую помощь и деятельность ППк.</p>
+              </a>
+            </li>
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/fz-152" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  ФЗ-152 «О персональных данных» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Требования к защите сведений о детях и родителях.</p>
+              </a>
+            </li>
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/fz-124" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  ФЗ-124 «О гарантиях прав ребёнка» <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Защита интересов несовершеннолетних в цифровой среде.</p>
+              </a>
+            </li>
           </ul>
         </div>
         <div className="space-y-4">
-          <h3 className="font-bold flex items-center gap-2"><ArrowRight className="size-4 text-primary" /> Ведомственные приказы</h3>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><strong>Приказ ДОНМ № 666:</strong> Основополагающий регламент работы школьных консилиумов г. Москвы.</li>
-            <li><strong>Распоряжение Минпросвещения № Р-93:</strong> Федеральное положение о ППк.</li>
-            <li><strong>СанПиН 1.2.3685-21:</strong> Гигиенические нормы работы с ЭСО и цифровыми тренажёрами.</li>
+          <h3 className="font-bold flex items-center gap-2 text-lg"><ArrowRight className="size-4 text-primary" /> Ведомственные приказы</h3>
+          <ul className="space-y-4">
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/order-666" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  Приказ ДОНМ № 666 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Основополагающий регламент работы школьных консилиумов г. Москвы.</p>
+              </a>
+            </li>
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/order-r93" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  Распоряжение Минпросвещения № Р-93 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Федеральное положение о ППк.</p>
+              </a>
+            </li>
+            <li className="group">
+              <a href="https://unvrsm.ru/legal/sanpin-3685" target="_blank" rel="noopener noreferrer" className="block transition-all">
+                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-1.5">
+                  СанПиН 1.2.3685-21 <ExternalLink className="size-3 opacity-0 group-hover:opacity-100" />
+                </span>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">Гигиенические нормы работы с ЭСО и цифровыми тренажёрами.</p>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
