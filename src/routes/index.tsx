@@ -175,10 +175,10 @@ function Index() {
         <div className="grid gap-6 md:grid-cols-3">
           <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
             <Award className="size-8 text-primary mb-6" />
-            <h3 className="font-bold text-xl leading-tight">Интеллектуальная собственность</h3>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+            <h3 className="font-bold text-xl leading-tight text-foreground">Интеллектуальная собственность</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/70">
               <p>
-                <span className="font-bold text-foreground">АИС ППк</span> — Свидетельство РЦИС № 0864-181-444.
+                <span className="font-semibold text-foreground/90">АИС ППк</span> — Свидетельство РЦИС № 0864-181-444.
               </p>
               <p>
                 Депонированная программа для ЭВМ, обеспечивающая автоматизацию консилиумов.
@@ -191,10 +191,10 @@ function Index() {
 
           <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
             <ShieldCheck className="size-8 text-primary mb-6" />
-            <h3 className="font-bold text-xl leading-tight">Безопасность (ФЗ-152)</h3>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+            <h3 className="font-bold text-xl leading-tight text-foreground">Безопасность (ФЗ-152)</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/70">
               <p>
-                Соответствие уровню защищённости <span className="font-bold text-foreground">УЗ-1</span>.
+                Соответствие уровню защищённости <span className="font-semibold text-foreground/90">УЗ-1</span>.
               </p>
               <p>
                 Обработка специальных категорий персональных данных (сведения о здоровье).
@@ -207,10 +207,10 @@ function Index() {
 
           <Card className="p-8 shadow-[var(--shadow-elegant)] border-border/70 bg-card/50 backdrop-blur-sm">
             <Database className="size-8 text-primary mb-6" />
-            <h3 className="font-bold text-xl leading-tight">Реестр ПО</h3>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/80">
+            <h3 className="font-bold text-xl leading-tight text-foreground">Реестр ПО</h3>
+            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-foreground/70">
               <p>
-                Внесено в <span className="font-bold text-foreground text-balance">Единый реестр российского ПО</span> Минцифры России.
+                Внесено в <span className="font-semibold text-foreground/90 text-balance">Единый реестр российского ПО</span> Минцифры России.
               </p>
               <p>
                 Совместимость с АИС ДОНМ и государственными информационными системами.
