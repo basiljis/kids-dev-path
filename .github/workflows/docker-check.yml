@@ -1,4 +1,4 @@
-name: Docker Build Check
+name: Docker Build & Smoke Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-check:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,10 +21,53 @@ jobs:
         with:
           context: .
           push: false
+          load: true
           tags: universum:latest
-          build-args: |
-            VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}
-            VITE_SUPABASE_PUBLISHABLE_KEY=${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-            VITE_SUPABASE_PROJECT_ID=${{ secrets.VITE_SUPABASE_PROJECT_ID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Run Smoke Test
+        run: |
+          # Start the container
+          docker run -d --name smoke-test -p 8080:8080 universum:latest
+          
+          # Wait for the server to be ready (max 30s)
+          echo "Waiting for server to start..."
+          for i in {1..30}; do
+            if curl -s -f http://localhost:8080 > /dev/null; then
+              echo "Server is up!"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Server failed to start in time"
+              docker logs smoke-test
+              exit 1
+            fi
+            sleep 1
+          done
+
+          # 1. Check Main Page
+          echo "Checking main page..."
+          curl -s -f http://localhost:8080 | grep -q "UNIVERSUM"
+          
+          # 2. Check Static Assets
+          # We need to find a static asset path from the container
+          echo "Checking static asset accessibility..."
+          ASSET_PATH=$(docker exec smoke-test find /app/dist/public/_public -name "*.js" | head -n 1 | sed 's|/app/dist/public||')
+          if [ -n "$ASSET_PATH" ]; then
+            echo "Testing asset: $ASSET_PATH"
+            curl -s -I -f "http://localhost:8080$ASSET_PATH" | grep -q "HTTP/1.1 200 OK"
+          else
+            echo "No JS assets found to test!"
+            # Don't fail if assets are empty (e.g. initial build), but log it
+          fi
+
+          # 3. Check Proxy Route (should return 401/404 or specific header if configured, 
+          # but we just check if Nginx handles it)
+          echo "Checking API proxy route..."
+          curl -s -I http://localhost:8080/api/ | grep -q "HTTP/1.1"
+
+          # Cleanup
+          docker stop smoke-test
+          docker rm smoke-test
+
