@@ -15,9 +15,10 @@ interface DocViewerProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  summary?: string;
 }
 
-export function DocViewer({ url, title, isOpen, onClose }: DocViewerProps) {
+export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerProps) {
   const isPdf = url.toLowerCase().endsWith(".pdf");
   
   // In a real app, we might proxy some URLs or use a PDF library, 
@@ -58,10 +59,30 @@ export function DocViewer({ url, title, isOpen, onClose }: DocViewerProps) {
           </div>
         </DialogHeader>
         
-        <div className="flex-1 bg-muted/20 relative">
+        <div className="flex-1 bg-muted/20 relative flex flex-col sm:flex-row overflow-hidden">
+          {summary && (
+            <div className="w-full sm:w-72 border-b sm:border-b-0 sm:border-r bg-background p-6 overflow-y-auto shrink-0">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                Краткое резюме
+              </h4>
+              <p className="text-sm leading-relaxed text-foreground/90 font-medium">
+                {summary}
+              </p>
+              <div className="mt-8 space-y-4">
+                <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-[11px] text-muted-foreground uppercase font-bold">Статус</p>
+                  <p className="text-xs font-semibold mt-1">Подтверждено UNIVERSUM</p>
+                </div>
+                <div className="p-3 rounded-lg bg-muted/50 border border-border/50">
+                  <p className="text-[11px] text-muted-foreground uppercase font-bold">Тип документа</p>
+                  <p className="text-xs font-semibold mt-1">{isPdf ? "PDF Исследование" : "Нормативный акт"}</p>
+                </div>
+              </div>
+            </div>
+          )}
           <iframe
             src={url}
-            className="w-full h-full border-none"
+            className="flex-1 w-full h-full border-none"
             title={title}
           />
         </div>
