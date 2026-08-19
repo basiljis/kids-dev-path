@@ -69,7 +69,9 @@ export type Product = {
   sessions: string;
   duration: string;
   setup: string;
+  metrics: MetricImpact[];
   papers: { title: string; doi: string; note: string; summary?: string }[];
+  integrations: string[];
   userReviews?: Review[];
 };
 
