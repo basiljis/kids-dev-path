@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye } from "lucide-react";
-import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE } from "@/lib/universum-data";
+import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE, type SphereKey } from "@/lib/universum-data";
 import { DocViewer } from "@/components/universum/doc-viewer";
 
 export const Route = createFileRoute("/science")({
