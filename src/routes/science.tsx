@@ -27,7 +27,7 @@ export const Route = createFileRoute("/science")({
 });
 
 function SciencePage() {
-  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean }>({
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined }>({
     url: "",
     title: "",
     isOpen: false,
@@ -41,6 +41,7 @@ function SciencePage() {
         isOpen={viewer.isOpen}
         url={viewer.url}
         title={viewer.title}
+        summary={viewer.summary}
         onClose={() => setViewer((v) => ({ ...v, isOpen: false }))}
       />
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -142,7 +143,8 @@ function SciencePage() {
                 onClick={() => setViewer({
                   url: `https://unvrsm.ru/research/${p.doi}.pdf`,
                   title: p.title,
-                  isOpen: true
+                  isOpen: true,
+                  summary: p.summary
                 })}
               >
                 Читать на русском <Eye className="size-3" />
