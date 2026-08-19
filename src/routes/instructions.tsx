@@ -55,7 +55,7 @@ function InstructionsPage() {
         <Button 
           variant="outline"
           onClick={() => setViewer({
-            url: "https://unvrsm.ru/instructions",
+            url: "https://unvrsm.ru/instructions.pdf",
             title: "Инструкции UNIVERSUM",
             isOpen: true
           })}
