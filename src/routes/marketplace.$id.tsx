@@ -83,7 +83,7 @@ function ProductPage() {
   const [current, setCurrent] = useState<number[]>([matchedDeficit?.score ?? 30]);
   const projected = Math.min(95, Math.round(current[0]! + (impact || 70) * 0.42));
   const [billingOpen, setBillingOpen] = useState(false);
-  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string }>({
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined }>({
     url: "",
     title: "",
     isOpen: false,
@@ -276,7 +276,7 @@ function ProductPage() {
                         url: `https://unvrsm.ru/research/${p.doi}.pdf`,
                         title: p.title,
                         isOpen: true,
-                        summary: p.summary ?? undefined
+                        summary: p.summary
                       })}
                     >
                       Читать на русском <Eye className="size-3" />

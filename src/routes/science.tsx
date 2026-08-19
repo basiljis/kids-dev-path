@@ -27,7 +27,7 @@ export const Route = createFileRoute("/science")({
 });
 
 function SciencePage() {
-  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string }>({
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined }>({
     url: "",
     title: "",
     isOpen: false,
@@ -144,7 +144,7 @@ function SciencePage() {
                   url: `https://unvrsm.ru/research/${p.doi}.pdf`,
                   title: p.title,
                   isOpen: true,
-                  summary: p.summary ?? undefined
+                  summary: p.summary
                 })}
               >
                 Читать на русском <Eye className="size-3" />

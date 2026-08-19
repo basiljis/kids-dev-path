@@ -15,7 +15,7 @@ interface DocViewerProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
-  summary?: string;
+  summary?: string | undefined;
 }
 
 export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerProps) {
