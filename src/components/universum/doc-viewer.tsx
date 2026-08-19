@@ -35,7 +35,8 @@ export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerPro
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl w-[95vw] h-[90vh] flex flex-col p-0 overflow-hidden gap-0">
+      <DialogPortal>
+        <DialogContent className="max-w-4xl w-[95vw] h-[90vh] flex flex-col p-0 overflow-hidden gap-0 z-[100]">
         <DialogHeader className="px-6 py-4 border-b flex flex-row items-center justify-between space-y-0">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-primary/10 rounded-lg">
@@ -86,7 +87,9 @@ export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerPro
             title={title}
           />
         </div>
+        </div>
       </DialogContent>
-    </Dialog>
-  );
+    </DialogPortal>
+  </Dialog>
+);
 }
