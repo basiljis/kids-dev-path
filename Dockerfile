@@ -20,8 +20,8 @@ ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
 ENV VITE_SUPABASE_PUBLISHABLE_KEY=$VITE_SUPABASE_PUBLISHABLE_KEY
 ENV VITE_SUPABASE_PROJECT_ID=$VITE_SUPABASE_PROJECT_ID
 
-# Build the Nitro application
-RUN bun run build
+# Build the Nitro application with node-server preset
+RUN NITRO_PRESET=node-server bun run build
 
 # Production stage
 FROM node:20-slim
