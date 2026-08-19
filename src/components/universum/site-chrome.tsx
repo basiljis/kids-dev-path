@@ -17,7 +17,6 @@ import {
 
 const NAV = [
   { to: "/marketplace", label: "Каталог" },
-  { to: "/marketplace/recommendations", label: "План развития (Пример)" },
   { to: "/vendor/add-product", label: "Производителям" },
   { to: "/science", label: "Научная база" },
   { to: "/instructions", label: "Инструкции" },

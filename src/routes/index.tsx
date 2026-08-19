@@ -80,6 +80,11 @@ function Index() {
               <Button size="lg" variant="ghost" asChild className="text-foreground/90 hover:text-foreground hover:bg-muted/80 border border-border/40 hover:border-border/80 shadow-sm">
                 <Link to="/vendor/add-product">Я производитель</Link>
               </Button>
+              <Button size="lg" variant="secondary" asChild className="gap-2">
+                <Link to="/marketplace/recommendations">
+                  <Activity className="size-4" /> План развития (Пример)
+                </Link>
+              </Button>
             </div>
             <div className="mt-7 flex flex-wrap gap-2">
               {SPHERE_ORDER.map((s) => (
