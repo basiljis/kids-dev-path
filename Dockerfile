@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y nginx curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy built application
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/.output ./dist
 COPY --from=builder /app/package.json ./package.json
 
 # Copy Nginx config
