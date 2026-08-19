@@ -129,7 +129,7 @@ function SciencePage() {
       </div>
 
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Публикации и доказательная база</h2>
-
+      <div className="mt-8 flex flex-wrap gap-3">
         <div className="flex flex-col gap-2">
           <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground ml-1">Сфера развития</label>
           <div className="flex flex-wrap gap-2">
@@ -170,6 +170,7 @@ function SciencePage() {
           </select>
         </div>
       </div>
+
 
       <div className="mt-6 space-y-4">
         {filteredPapers.length > 0 ? filteredPapers.map((p) => (
