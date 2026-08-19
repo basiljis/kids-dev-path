@@ -140,7 +140,7 @@ function SciencePage() {
                 size="sm"
                 className="text-[13px] text-primary h-8 px-2 hover:bg-primary/5 gap-1.5 font-medium whitespace-nowrap"
                 onClick={() => setViewer({
-                  url: `https://unvrsm.ru/research/${p.doi}`,
+                  url: `https://unvrsm.ru/research/${p.doi}.pdf`,
                   title: p.title,
                   isOpen: true
                 })}
@@ -196,7 +196,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/fz-273",
+                  url: "https://unvrsm.ru/legal/fz-273.pdf",
                   title: "ФЗ-273 «Об образовании»",
                   isOpen: true
                 })}
@@ -211,7 +211,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/fz-152",
+                  url: "https://unvrsm.ru/legal/fz-152.pdf",
                   title: "ФЗ-152 «О персональных данных»",
                   isOpen: true
                 })}
@@ -226,7 +226,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/fz-124",
+                  url: "https://unvrsm.ru/legal/fz-124.pdf",
                   title: "ФЗ-124 «О гарантиях прав ребёнка»",
                   isOpen: true
                 })}
@@ -246,7 +246,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/order-666",
+                  url: "https://unvrsm.ru/legal/order-666.pdf",
                   title: "Приказ ДОНМ № 666",
                   isOpen: true
                 })}
@@ -261,7 +261,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/order-r93",
+                  url: "https://unvrsm.ru/legal/order-r93.pdf",
                   title: "Распоряжение Минпросвещения № Р-93",
                   isOpen: true
                 })}
@@ -276,7 +276,7 @@ function SciencePage() {
             <li className="group">
               <button 
                 onClick={() => setViewer({
-                  url: "https://unvrsm.ru/legal/sanpin-3685",
+                  url: "https://unvrsm.ru/legal/sanpin-3685.pdf",
                   title: "СанПиН 1.2.3685-21",
                   isOpen: true
                 })}
