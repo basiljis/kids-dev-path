@@ -128,7 +128,8 @@ function SciencePage() {
         ))}
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-3">
+      <h2 className="mt-16 text-2xl font-bold tracking-tight">Публикации и доказательная база</h2>
+
         <div className="flex flex-col gap-2">
           <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground ml-1">Сфера развития</label>
           <div className="flex flex-wrap gap-2">
