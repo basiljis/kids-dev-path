@@ -87,7 +87,6 @@ function ProductPage() {
     url: "",
     title: "",
     isOpen: false,
-    summary: undefined,
   });
 
   return (
@@ -277,7 +276,7 @@ function ProductPage() {
                         url: `https://unvrsm.ru/research/${p.doi}.pdf`,
                         title: p.title,
                         isOpen: true,
-                        summary: p.summary
+                        summary: p.summary ?? undefined
                       })}
                     >
                       Читать на русском <Eye className="size-3" />
