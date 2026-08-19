@@ -27,13 +27,24 @@ export const Route = createFileRoute("/science")({
 });
 
 function SciencePage() {
+  const [activeSphere, setActiveSphere] = useState<SphereKey | "all">("all");
+  const [activeProduct, setActiveProduct] = useState<string | "all">("all");
   const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined }>({
     url: "",
     title: "",
     isOpen: false,
   });
 
-  const papers = PRODUCTS.flatMap((p) => p.papers.map((paper) => ({ ...paper, product: p.name })));
+  const papers = PRODUCTS.flatMap((p) => p.papers.map((paper) => ({ ...paper, product: p.name, productId: p.id, metrics: p.metrics })));
+
+  const filteredPapers = papers.filter((p) => {
+    const matchesProduct = activeProduct === "all" || p.productId === activeProduct;
+    const matchesSphere = activeSphere === "all" || p.metrics.some(m => m.sphere === activeSphere);
+    return matchesProduct && matchesSphere;
+  });
+
+  const uniqueProducts = Array.from(new Set(PRODUCTS.map(p => ({ id: p.id, name: p.name }))));
+
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
@@ -117,9 +128,50 @@ function SciencePage() {
         ))}
       </div>
 
-      <h2 className="mt-16 text-2xl font-bold tracking-tight">Публикации и доказательная база</h2>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <div className="flex flex-col gap-2">
+          <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground ml-1">Сфера развития</label>
+          <div className="flex flex-wrap gap-2">
+            <Button 
+              variant={activeSphere === "all" ? "default" : "outline"} 
+              size="sm" 
+              onClick={() => setActiveSphere("all")}
+              className="h-8 text-xs px-3"
+            >
+              Все блоки
+            </Button>
+            {SPHERE_ORDER.map(s => (
+              <Button 
+                key={s}
+                variant={activeSphere === s ? "default" : "outline"} 
+                size="sm" 
+                onClick={() => setActiveSphere(s)}
+                className="h-8 text-xs px-3"
+                style={activeSphere === s ? { backgroundColor: SPHERES[s].color, borderColor: SPHERES[s].color } : {}}
+              >
+                {SPHERES[s].label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground ml-1">Оборудование</label>
+          <select 
+            className="h-8 text-xs px-3 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground outline-none focus:ring-1 focus:ring-primary min-w-[200px]"
+            value={activeProduct}
+            onChange={(e) => setActiveProduct(e.target.value)}
+          >
+            <option value="all">Все устройства</option>
+            {uniqueProducts.map(p => (
+              <option key={p.id} value={p.id}>{p.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <div className="mt-6 space-y-4">
-        {papers.map((p) => (
+        {filteredPapers.length > 0 ? filteredPapers.map((p) => (
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
             <div className="flex-1">
               <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
@@ -154,7 +206,12 @@ function SciencePage() {
               </Badge>
             </div>
           </div>
-        ))}
+        )) : (
+          <div className="py-12 text-center border rounded-xl bg-muted/10">
+            <p className="text-muted-foreground">Публикаций по выбранным фильтрам не найдено</p>
+            <Button variant="link" onClick={() => { setActiveSphere("all"); setActiveProduct("all"); }}>Сбросить фильтры</Button>
+          </div>
+        )}
       </div>
 
 
