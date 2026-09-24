@@ -12,9 +12,20 @@ services:
     build:
       context: .
       args:
-        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
-        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
-        VITE_SUPABASE_PROJECT_ID: ${VITE_SUPABASE_PROJECT_ID}
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-https://api.psygrafik.ru}
+        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY:-sb_publishable_1nH1K6wez9OQVDhIhzvL0Q_w779nEIe}
+        VITE_SUPABASE_PROJECT_ID: ${VITE_SUPABASE_PROJECT_ID:-poapzmmpbwdcoldvofen}
+    environment:
+      # Runtime vars for SSR / server functions
+      SUPABASE_URL: ${SUPABASE_URL:-https://poapzmmpbwdcoldvofen.supabase.co}
+      SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY:-sb_publishable_1nH1K6wez9OQVDhIhzvL0Q_w779nEIe}
+      HOST: 0.0.0.0
+      PORT: 3000
     expose:
       - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/__health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
     restart: always
