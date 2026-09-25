@@ -7,6 +7,7 @@ import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye }
 import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE, type SphereKey } from "@/lib/universum-data";
 import { DocViewer } from "@/components/universum/doc-viewer";
 import { JOURNALS } from "@/lib/journals";
+import { ResearchAssistant } from "@/components/universum/research-assistant";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
@@ -129,6 +130,8 @@ function SciencePage() {
           </Card>
         ))}
       </div>
+
+      <ResearchAssistant />
 
       <h2 className="mt-16 text-2xl font-bold tracking-tight">Публикации и доказательная база</h2>
       <div className="mt-8 flex flex-wrap gap-3">
