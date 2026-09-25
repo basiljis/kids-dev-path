@@ -16,7 +16,7 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9]+/g, "")
     .slice(0, 24) || "paper";
 
-function journalOf(p: CitablePaper): { name: string; year?: number; publisher?: string; kind?: string } {
+function journalOf(p: CitablePaper): { name: string; year?: number | undefined; publisher?: string | undefined; kind?: string | undefined } {
   const j: JournalInfo | undefined = JOURNALS[p.doi];
   return {
     name: j?.name ?? p.journal ?? "—",
