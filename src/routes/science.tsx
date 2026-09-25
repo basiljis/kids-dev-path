@@ -177,6 +177,9 @@ function SciencePage() {
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
             <div className="flex-1">
               <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
+              {p.summary && (
+                <p className="mt-2 text-[13px] leading-relaxed text-foreground/80">{p.summary}</p>
+              )}
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted-foreground">
                 <a 
                   href={`https://doi.org/${p.doi}`} 
