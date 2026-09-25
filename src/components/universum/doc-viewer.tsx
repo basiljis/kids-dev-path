@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, ExternalLink } from "lucide-react";
+import { JOURNALS } from "@/lib/journals";
 
 interface DocViewerProps {
   url: string;
@@ -21,6 +22,8 @@ interface DocViewerProps {
 
 export function DocViewer({ url, title, isOpen, onClose, summary, findings }: DocViewerProps) {
   const isExternalSource = url.includes("doi.org/");
+  const doi = isExternalSource ? url.split("doi.org/")[1] ?? "" : "";
+  const journal = doi ? JOURNALS[doi] : undefined;
   const isPdf = isExternalSource || url.toLowerCase().endsWith(".pdf");
   
   const handleDownload = () => {
@@ -60,6 +63,47 @@ export function DocViewer({ url, title, isOpen, onClose, summary, findings }: Do
           </DialogHeader>
           
           <div className="flex-1 bg-muted/20 relative flex flex-col sm:flex-row overflow-hidden">
+            {isExternalSource ? (
+              <div className="flex-1 overflow-y-auto bg-background p-6 sm:p-8">
+                <div className="mx-auto max-w-2xl space-y-6">
+                  {journal && (
+                    <div className="rounded-xl border border-primary/15 bg-primary/5 p-4">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{journal.kind}</p>
+                      <p className="mt-1 text-base font-bold italic">{journal.name}</p>
+                      {journal.ru && <p className="text-sm text-foreground/80">{journal.ru}</p>}
+                      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-foreground/80">
+                        <span>Год: <b>{journal.year}</b></span>
+                        <span>Издатель: <b>{journal.publisher}</b></span>
+                        <a href={url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DOI: {doi}</a>
+                      </div>
+                    </div>
+                  )}
+                  {summary && (
+                    <section>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Краткое содержание</h4>
+                      <p className="text-[15px] leading-relaxed text-foreground/90">{summary}</p>
+                    </section>
+                  )}
+                  {findings && findings.length > 0 && (
+                    <section>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Выводы и доказательная база</h4>
+                      <ul className="space-y-2 text-[15px] leading-relaxed text-foreground/90">
+                        {findings.map((f) => <li key={f} className="rounded-lg bg-muted/40 px-3 py-2">• {f}</li>)}
+                      </ul>
+                    </section>
+                  )}
+                  <div className="flex flex-wrap items-center gap-3 border-t pt-4">
+                    <Button asChild className="gap-2">
+                      <a href={url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="size-4" /> Открыть оригинал
+                      </a>
+                    </Button>
+                    <span className="text-xs text-muted-foreground">Статус: подтверждено UNIVERSUM</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
             {summary && (
               <div className="w-full sm:w-72 border-b sm:border-b-0 sm:border-r bg-background p-6 overflow-y-auto shrink-0">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
@@ -88,28 +132,12 @@ export function DocViewer({ url, title, isOpen, onClose, summary, findings }: Do
                 </div>
               </div>
             )}
-            {isExternalSource ? (
-              <div className="flex-1 flex items-center justify-center p-8 bg-background">
-                <div className="max-w-md text-center space-y-4">
-                  <FileText className="size-12 text-primary mx-auto" />
-                  <h3 className="text-lg font-bold">Полный текст у издателя</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Издатель не разрешает встраивать статью на сторонние сайты. Откройте оригинал по DOI — он откроется на официальной странице журнала.
-                  </p>
-                  <Button asChild className="gap-2">
-                    <a href={url} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="size-4" />
-                      Открыть статью
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            ) : (
               <iframe
                 src={url}
                 className="flex-1 w-full h-full border-none bg-white"
                 title={title}
               />
+              </>
             )}
           </div>
         </DialogContent>
