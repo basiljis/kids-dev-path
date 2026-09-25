@@ -64,8 +64,8 @@ function VendorLandingPage() {
             <Button size="lg" className="h-12 px-8 text-base font-semibold" asChild>
               <a href="#contact-form">Стать партнером</a>
             </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 text-base font-semibold border-white/20 hover:bg-white/10">
-              Посмотреть возможности
+            <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base font-semibold bg-transparent text-foreground border-foreground/30 hover:bg-foreground/10 hover:text-foreground">
+              <a href="#benefits">Посмотреть возможности</a>
             </Button>
           </div>
         </div>
