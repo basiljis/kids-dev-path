@@ -16,9 +16,10 @@ interface DocViewerProps {
   isOpen: boolean;
   onClose: () => void;
   summary?: string | undefined;
+  findings?: string[] | undefined;
 }
 
-export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerProps) {
+export function DocViewer({ url, title, isOpen, onClose, summary, findings }: DocViewerProps) {
   const isExternalSource = url.includes("doi.org/");
   const isPdf = isExternalSource || url.toLowerCase().endsWith(".pdf");
   
@@ -67,6 +68,14 @@ export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerPro
                 <p className="text-sm leading-relaxed text-foreground/90 font-medium">
                   {summary}
                 </p>
+                {findings && findings.length > 0 && (
+                  <>
+                    <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Выводы</h4>
+                    <ul className="space-y-2 text-sm leading-relaxed text-foreground/90">
+                      {findings.map((f) => <li key={f}>• {f}</li>)}
+                    </ul>
+                  </>
+                )}
                 <div className="mt-8 space-y-4">
                   <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
                     <p className="text-[11px] text-muted-foreground uppercase font-bold">Статус</p>
