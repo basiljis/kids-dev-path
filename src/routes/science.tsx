@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye } from "lucide-react";
 import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE, type SphereKey } from "@/lib/universum-data";
 import { DocViewer } from "@/components/universum/doc-viewer";
+import { JOURNALS } from "@/lib/journals";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
@@ -178,12 +179,19 @@ function SciencePage() {
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
             <div className="flex-1">
               <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
-              {(p.lang === "ru" || p.journal) && (
-                <div className="mt-1 flex flex-wrap items-center gap-2 text-[12px] text-muted-foreground">
-                  {p.lang === "ru" && <Badge variant="outline" className="px-1.5 py-0 text-[10px] font-bold">RU</Badge>}
-                  {p.journal && <span>{p.journal}</span>}
-                </div>
-              )}
+              {(() => {
+                const j = JOURNALS[p.doi];
+                if (!j && !p.journal && p.lang !== "ru") return null;
+                return (
+                  <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px] text-muted-foreground">
+                    {p.lang === "ru" && <Badge variant="outline" className="px-1.5 py-0 text-[10px] font-bold">RU</Badge>}
+                    <span className="font-semibold text-foreground/80">{j?.kind ?? "Журнал"}:</span>
+                    <span className="italic text-foreground/85">{j?.name ?? p.journal}</span>
+                    {j?.ru && <span>({j.ru})</span>}
+                    {j && <span>· {j.year} · {j.publisher}</span>}
+                  </div>
+                );
+              })()}
               {p.summary && (
                 <p className="mt-2 text-[13px] leading-relaxed text-foreground/80">{p.summary}</p>
               )}
