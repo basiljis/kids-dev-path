@@ -19,7 +19,8 @@ interface DocViewerProps {
 }
 
 export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerProps) {
-  const isPdf = url.toLowerCase().endsWith(".pdf");
+  const isExternalSource = url.includes("doi.org/");
+  const isPdf = isExternalSource || url.toLowerCase().endsWith(".pdf");
   
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -78,11 +79,29 @@ export function DocViewer({ url, title, isOpen, onClose, summary }: DocViewerPro
                 </div>
               </div>
             )}
-            <iframe
-              src={url}
-              className="flex-1 w-full h-full border-none bg-white"
-              title={title}
-            />
+            {isExternalSource ? (
+              <div className="flex-1 flex items-center justify-center p-8 bg-background">
+                <div className="max-w-md text-center space-y-4">
+                  <FileText className="size-12 text-primary mx-auto" />
+                  <h3 className="text-lg font-bold">Полный текст у издателя</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Издатель не разрешает встраивать статью на сторонние сайты. Откройте оригинал по DOI — он откроется на официальной странице журнала.
+                  </p>
+                  <Button asChild className="gap-2">
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="size-4" />
+                      Открыть статью
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <iframe
+                src={url}
+                className="flex-1 w-full h-full border-none bg-white"
+                title={title}
+              />
+            )}
           </div>
         </DialogContent>
       </DialogPortal>
