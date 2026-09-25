@@ -273,7 +273,7 @@ function ProductPage() {
                       size="sm"
                       className="text-[13px] text-primary h-8 px-2 hover:bg-primary/5 gap-1.5 font-medium whitespace-nowrap"
                       onClick={() => setViewer({
-                        url: `https://unvrsm.ru/research/${p.doi}.pdf`,
+                        url: `https://doi.org/${p.doi}`,
                         title: p.title,
                         isOpen: true,
                         summary: p.summary
