@@ -197,9 +197,37 @@ function SciencePage() {
       </div>
 
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-6 flex flex-wrap items-center gap-2 rounded-xl border border-border/70 bg-muted/30 p-3">
+        <p className="text-[13px] font-semibold text-foreground/80 mr-auto">
+          Экспорт цитирований{selected.size > 0 ? ` — выбрано: ${selected.size}` : ""}
+        </p>
+        <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5" onClick={() => exportSelected("bibtex")}>
+          <Download className="size-3.5" /> BibTeX
+        </Button>
+        <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5" onClick={() => exportSelected("ris")}>
+          <Download className="size-3.5" /> RIS
+        </Button>
+        <Button variant="outline" size="sm" className="h-8 text-xs gap-1.5" onClick={() => exportSelected("gost")}>
+          <Download className="size-3.5" /> ГОСТ
+        </Button>
+        {selected.size > 0 && (
+          <Button variant="ghost" size="sm" className="h-8 text-xs" onClick={() => setSelected(new Set())}>
+            Сбросить выбор
+          </Button>
+        )}
+      </div>
+
+      <div className="mt-4 space-y-4">
         {filteredPapers.length > 0 ? filteredPapers.map((p) => (
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
+            <button
+              type="button"
+              aria-label={selected.has(keyOf(p)) ? "Убрать из экспорта" : "Добавить в экспорт"}
+              onClick={() => toggleSelect(keyOf(p))}
+              className="shrink-0 self-start sm:self-center text-muted-foreground hover:text-primary transition-colors"
+            >
+              {selected.has(keyOf(p)) ? <CheckSquare className="size-5 text-primary" /> : <Square className="size-5" />}
+            </button>
             <div className="flex-1">
               <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
               {(() => {
