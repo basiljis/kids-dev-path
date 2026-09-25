@@ -3,11 +3,13 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye } from "lucide-react";
+import { ArrowRight, BookOpen, ShieldCheck, Database, Award, ExternalLink, Eye, Download, CheckSquare, Square } from "lucide-react";
 import { PRODUCTS, SPHERES, SPHERE_ORDER, RESEARCH_BASE, type SphereKey } from "@/lib/universum-data";
 import { DocViewer } from "@/components/universum/doc-viewer";
 import { JOURNALS } from "@/lib/journals";
 import { ResearchAssistant } from "@/components/universum/research-assistant";
+import { downloadCitation, type ExportFormat } from "@/lib/citation-export";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/science")({
   head: () => ({
@@ -46,6 +48,24 @@ function SciencePage() {
   });
 
   const uniqueProducts = Array.from(new Set(PRODUCTS.map(p => ({ id: p.id, name: p.name }))));
+
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const keyOf = (p: (typeof papers)[number]) => `${p.doi}|${p.productId}`;
+  const toggleSelect = (key: string) =>
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  const selectedPapers = papers.filter((p) => selected.has(keyOf(p)));
+  const exportSelected = (format: ExportFormat) => {
+    if (selectedPapers.length === 0) {
+      toast.error("Сначала отметьте публикации галочкой");
+      return;
+    }
+    downloadCitation(selectedPapers, format);
+    toast.success(`Экспортировано публикаций: ${selectedPapers.length}`);
+  };
 
 
   return (
