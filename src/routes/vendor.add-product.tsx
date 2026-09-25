@@ -1,13 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { 
-  Factory, 
-  Rocket, 
-  BarChart3, 
-  Globe, 
-  ShieldCheck, 
-  Users, 
+import {
+  Rocket,
+  Globe,
+  ShieldCheck,
   ArrowRight,
-  CheckCircle2,
   BrainCircuit,
   MessageSquarePlus
 } from "lucide-react";
@@ -28,6 +24,10 @@ export const Route = createFileRoute("/vendor/add-product")({
         name: "description",
         content: "Присоединяйтесь к экосистеме UNIVERSUM. Прямой доступ к B2B и B2G рынкам, научная валидация и интеграция с АИС ППк.",
       },
+      { property: "og:title", content: "Для производителей оборудования и ПО — UNIVERSUM" },
+      { property: "og:description", content: "Партнерство с UNIVERSUM: доступ к организациям, научная валидация и интеграция оборудования и ПО." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: VendorLandingPage,
@@ -46,25 +46,24 @@ function VendorLandingPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-950 py-24 text-white">
-        <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-from)_0%,_transparent_50%)] from-primary" />
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <Badge className="mb-4 bg-primary/20 text-primary border-primary/30 hover:bg-primary/30">
+      <section className="relative overflow-hidden bg-foreground py-14 text-background sm:py-24">
+        <div className="container relative z-10 mx-auto px-4 text-center sm:px-6">
+          <Badge className="mb-4 max-w-full border-primary/50 bg-primary/20 text-background hover:bg-primary/20">
             Платформа для роста вашего бизнеса
           </Badge>
-          <h1 className="mx-auto max-w-4xl text-4xl font-extrabold tracking-tight sm:text-6xl">
+          <h1 className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
             Станьте частью экосистемы <span className="text-primary">UNIVERSUM</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-background/75 sm:mt-6 sm:text-lg">
             Мы объединяем производителей высокотехнологичного оборудования с образовательными и медицинскими организациями через единую систему Smart Match.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="h-12 px-8 text-base font-semibold" asChild>
+          <div className="mx-auto mt-8 grid max-w-sm gap-3 sm:mt-10 sm:max-w-none sm:grid-cols-[auto_auto] sm:justify-center sm:gap-4">
+            <Button size="lg" className="h-12 w-full px-6 text-base font-semibold sm:w-auto sm:px-8" asChild>
               <a href="#contact-form">Стать партнером</a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base font-semibold bg-transparent text-foreground border-foreground/30 hover:bg-foreground/10 hover:text-foreground">
+            <Button asChild size="lg" variant="outline" className="h-12 w-full border-background/70 bg-background/10 px-6 text-base font-semibold text-background hover:bg-background hover:text-foreground sm:w-auto sm:px-8">
               <a href="#benefits">Посмотреть возможности</a>
             </Button>
           </div>
@@ -72,40 +71,40 @@ function VendorLandingPage() {
       </section>
 
       {/* Value Propositions */}
-      <section id="benefits" className="py-20 bg-background scroll-mt-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight">Что дает UNIVERSUM производителю?</h2>
-            <p className="mt-4 text-muted-foreground">Инструменты для масштабирования и научного подтверждения ценности продукта.</p>
+      <section id="benefits" className="scroll-mt-20 bg-background py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="mb-9 text-center sm:mb-16">
+            <h2 className="text-2xl font-bold leading-tight sm:text-3xl">Что дает UNIVERSUM производителю?</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">Инструменты для масштабирования и научного подтверждения ценности продукта.</p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            <Card className="p-8 hover:shadow-lg transition-shadow border-t-4 border-t-blue-500">
-              <div className="p-3 bg-blue-50 rounded-lg w-fit dark:bg-blue-900/20">
-                <Globe className="size-8 text-blue-600" />
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+            <Card className="border-t-4 border-t-primary p-5 transition-shadow hover:shadow-lg sm:p-8">
+              <div className="w-fit rounded-md bg-primary/10 p-3">
+                <Globe className="size-7 text-primary sm:size-8" />
               </div>
-              <h3 className="mt-6 text-xl font-bold">Выход на рынки B2B и B2G</h3>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
+              <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">Выход на рынки B2B и B2G</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
                 Ваш продукт становится доступен тысячам школ, детских садов и ППМС-центров, которые уже используют АИС ППк-Помощник.
               </p>
             </Card>
 
-            <Card className="p-8 hover:shadow-lg transition-shadow border-t-4 border-t-purple-500">
-              <div className="p-3 bg-purple-50 rounded-lg w-fit dark:bg-purple-900/20">
-                <BrainCircuit className="size-8 text-purple-600" />
+            <Card className="border-t-4 border-t-accent p-5 transition-shadow hover:shadow-lg sm:p-8">
+              <div className="w-fit rounded-md bg-accent/15 p-3">
+                <BrainCircuit className="size-7 text-accent-foreground sm:size-8" />
               </div>
-              <h3 className="mt-6 text-xl font-bold">Научная валидация (Smart Match)</h3>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
+              <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">Научная валидация (Smart Match)</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
                 Мы помогаем связать функционал вашего оборудования с 5 сферами развития ребенка, создавая доказательную базу для специалистов.
               </p>
             </Card>
 
-            <Card className="p-8 hover:shadow-lg transition-shadow border-t-4 border-t-green-500">
-              <div className="p-3 bg-green-50 rounded-lg w-fit dark:bg-green-900/20">
-                <Rocket className="size-8 text-green-600" />
+            <Card className="border-t-4 border-t-secondary p-5 transition-shadow hover:shadow-lg sm:p-8">
+              <div className="w-fit rounded-md bg-secondary p-3">
+                <Rocket className="size-7 text-secondary-foreground sm:size-8" />
               </div>
-              <h3 className="mt-6 text-xl font-bold">Прямая интеграция API</h3>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
+              <h3 className="mt-5 text-lg font-bold sm:mt-6 sm:text-xl">Прямая интеграция API</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
                 Передавайте данные о результатах занятий напрямую в цифровую карту развития ребенка, подтверждая эффективность вашего решения.
               </p>
             </Card>
@@ -114,11 +113,11 @@ function VendorLandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 bg-slate-50 dark:bg-slate-900/30">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="flex-1 space-y-8">
-              <h2 className="text-3xl font-bold tracking-tight">4 простых шага к интеграции</h2>
+      <section className="bg-muted/45 py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:gap-16">
+            <div className="min-w-0 flex-1 space-y-7 sm:space-y-8">
+              <h2 className="text-2xl font-bold leading-tight sm:text-3xl">4 простых шага к интеграции</h2>
               <div className="space-y-6">
                 {[
                   { step: "01", title: "Заявка на партнерство", text: "Заполните форму ниже. Мы проверим соответствие вашего продукта стандартам безопасности и педагогической ценности." },
@@ -126,18 +125,18 @@ function VendorLandingPage() {
                   { step: "03", title: "Техническое подключение", text: "Интеграция по протоколу API v2.1 или SCORM 1.2 для обмена данными о прогрессе детей." },
                   { step: "04", title: "Запуск продаж", text: "Ваш товар появляется в каталоге и начинает рекомендоваться системой Smart Match на основе реальных дефицитов детей." }
                 ].map((item) => (
-                  <div key={item.step} className="flex gap-6">
-                    <span className="text-3xl font-black text-primary/20 tabular-nums">{item.step}</span>
-                    <div>
-                      <h4 className="font-bold text-lg">{item.title}</h4>
-                      <p className="text-muted-foreground">{item.text}</p>
+                  <div key={item.step} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5">
+                    <span className="text-2xl font-black tabular-nums text-primary/60 sm:text-3xl">{item.step}</span>
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold sm:text-lg">{item.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:text-base">{item.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex-1 w-full max-w-md">
-              <Card id="contact-form" className="p-8 border-primary/20 shadow-xl">
+            <div className="w-full flex-1 lg:max-w-md">
+              <Card id="contact-form" className="scroll-mt-20 border-primary/20 p-5 shadow-xl sm:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <MessageSquarePlus className="size-6 text-primary" />
                   <h3 className="text-xl font-bold">Стать партнером</h3>
@@ -167,7 +166,7 @@ function VendorLandingPage() {
                   <Button type="submit" className="w-full mt-2" disabled={isSubmitting}>
                     {isSubmitting ? "Отправка..." : "Отправить заявку"}
                   </Button>
-                  <p className="text-[10px] text-center text-muted-foreground mt-4 leading-relaxed">
+                  <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
                     Нажимая кнопку, вы соглашаетесь с Политикой конфиденциальности и условиями обработки данных (ФЗ-152).
                   </p>
                 </form>
@@ -178,41 +177,41 @@ function VendorLandingPage() {
       </section>
 
       {/* Compliance Block */}
-      <section className="py-20 bg-background border-t">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 rounded-full text-sm font-medium mb-8">
+      <section className="border-t bg-background py-14 sm:py-20">
+        <div className="container mx-auto px-4 text-center sm:px-6">
+          <div className="mb-7 inline-flex max-w-full items-center gap-2 rounded-full bg-secondary px-4 py-2 text-xs font-medium text-secondary-foreground sm:mb-8 sm:text-sm">
             <ShieldCheck className="size-4" /> Полное соответствие ГОСТ и ФЗ-152
           </div>
-          <h2 className="text-3xl font-bold tracking-tight mb-12">Технологический стек для вендоров</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <h2 className="mb-8 text-2xl font-bold leading-tight sm:mb-12 sm:text-3xl">Технологический стек для вендоров</h2>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 md:gap-8">
             <div className="space-y-2">
               <p className="text-2xl font-bold text-primary">SCORM 1.2</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest">Стандарт контента</p>
+              <p className="text-xs uppercase text-muted-foreground">Стандарт контента</p>
             </div>
             <div className="space-y-2">
               <p className="text-2xl font-bold text-primary">REST API</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest">Обмен данными</p>
+              <p className="text-xs uppercase text-muted-foreground">Обмен данными</p>
             </div>
             <div className="space-y-2">
               <p className="text-2xl font-bold text-primary">УЗ-1</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest">Защита данных</p>
+              <p className="text-xs uppercase text-muted-foreground">Защита данных</p>
             </div>
             <div className="space-y-2">
               <p className="text-2xl font-bold text-primary">PWA / WEB</p>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest">Кроссплатформенность</p>
+              <p className="text-xs uppercase text-muted-foreground">Кроссплатформенность</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold">Готовы масштабировать свой продукт?</h2>
+      <section className="bg-primary py-14 text-primary-foreground sm:py-20">
+        <div className="container mx-auto px-4 text-center sm:px-6">
+          <h2 className="text-2xl font-bold leading-tight sm:text-3xl">Готовы масштабировать свой продукт?</h2>
           <p className="mt-4 text-primary-foreground/80 max-w-xl mx-auto">
             Присоединяйтесь к крупнейшему маркетплейсу коррекционного оборудования в России и СНГ.
           </p>
-          <Button variant="secondary" size="lg" className="mt-8 px-10 rounded-full" asChild>
+          <Button variant="secondary" size="lg" className="mt-8 w-full px-6 sm:w-auto sm:px-10" asChild>
             <a href="#contact-form">Начать сотрудничество <ArrowRight className="ml-2 size-4" /></a>
           </Button>
         </div>
