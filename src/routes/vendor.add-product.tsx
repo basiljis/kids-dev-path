@@ -64,15 +64,15 @@ function VendorLandingPage() {
             <Button size="lg" className="h-12 px-8 text-base font-semibold" asChild>
               <a href="#contact-form">Стать партнером</a>
             </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 text-base font-semibold border-white/20 hover:bg-white/10">
-              Посмотреть возможности
+            <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base font-semibold bg-transparent text-foreground border-foreground/30 hover:bg-foreground/10 hover:text-foreground">
+              <a href="#benefits">Посмотреть возможности</a>
             </Button>
           </div>
         </div>
       </section>
 
       {/* Value Propositions */}
-      <section className="py-20 bg-background">
+      <section id="benefits" className="py-20 bg-background scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight">Что дает UNIVERSUM производителю?</h2>
