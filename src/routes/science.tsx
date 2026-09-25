@@ -29,7 +29,7 @@ export const Route = createFileRoute("/science")({
 function SciencePage() {
   const [activeSphere, setActiveSphere] = useState<SphereKey | "all">("all");
   const [activeProduct, setActiveProduct] = useState<string | "all">("all");
-  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined }>({
+  const [viewer, setViewer] = useState<{ url: string; title: string; isOpen: boolean; summary?: string | undefined; findings?: string[] | undefined }>({
     url: "",
     title: "",
     isOpen: false,
@@ -53,6 +53,7 @@ function SciencePage() {
         url={viewer.url}
         title={viewer.title}
         summary={viewer.summary}
+        findings={viewer.findings}
         onClose={() => setViewer((v) => ({ ...v, isOpen: false }))}
       />
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -177,8 +178,22 @@ function SciencePage() {
           <div key={p.doi + p.product} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border/70 bg-card p-5 hover:border-primary/30 transition-colors group">
             <div className="flex-1">
               <p className="font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">{p.title}</p>
+              {(p.lang === "ru" || p.journal) && (
+                <div className="mt-1 flex flex-wrap items-center gap-2 text-[12px] text-muted-foreground">
+                  {p.lang === "ru" && <Badge variant="outline" className="px-1.5 py-0 text-[10px] font-bold">RU</Badge>}
+                  {p.journal && <span>{p.journal}</span>}
+                </div>
+              )}
               {p.summary && (
                 <p className="mt-2 text-[13px] leading-relaxed text-foreground/80">{p.summary}</p>
+              )}
+              {p.findings && p.findings.length > 0 && (
+                <div className="mt-3 rounded-lg bg-muted/40 p-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Выводы</p>
+                  <ul className="mt-1.5 space-y-1 text-[13px] text-foreground/85">
+                    {p.findings.map((f) => <li key={f}>• {f}</li>)}
+                  </ul>
+                </div>
               )}
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-muted-foreground">
                 <a 
@@ -201,10 +216,11 @@ function SciencePage() {
                   url: `https://doi.org/${p.doi}`,
                   title: p.title,
                   isOpen: true,
-                  summary: p.summary
+                  summary: p.summary,
+                  findings: p.findings
                 })}
               >
-                Читать на русском <Eye className="size-3" />
+                {p.lang === "ru" ? "Читать" : "Читать на русском"} <Eye className="size-3" />
               </Button>
               <Badge variant="secondary" className="w-fit shrink-0 px-2 py-0 text-[11px] uppercase tracking-wider font-bold">
                 {p.product}
